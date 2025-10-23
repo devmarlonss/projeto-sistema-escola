@@ -1,0 +1,1 @@
+# Funções para salvar/carregar JSON
