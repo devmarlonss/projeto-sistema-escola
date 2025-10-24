@@ -36,6 +36,11 @@ class Turma:
             return True
         return False
 
+    def remover_aluno(self, aluno):
+        if (aluno in self.alunos):
+            self.alunos.remove(aluno)
+            return True
+        return False
 
 if __name__ == "__main__":
     curso1 = Curso("Informática", "C001")
