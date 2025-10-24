@@ -20,3 +20,7 @@ class Disciplina:
 
     def exibir_info(self):
         print(f"Nome: {self.nome}\nCódigo: {self.codigo}\nCarga Horária: {self.carga_horaria} horas")
+
+if __name__ == "__main__":
+    disc = Disciplina("Matemática", "213123", 120)
+    disc.exibir_info()
