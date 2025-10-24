@@ -1,1 +1,31 @@
 # Classe Curso
+from disciplina import Disciplina
+
+class Curso:
+    def __init__(self, nome: str, codigo: str, disciplinas: list = None):
+        if disciplinas is None:
+            disciplinas = []
+        self.__nome = nome
+        self.__codigo = codigo
+        self.__disciplinas = disciplinas
+
+    @property
+    def nome(self):
+        return self.__nome
+    
+    @property
+    def codigo(self):
+        return self.__codigo
+    
+    @property
+    def disciplinas(self):
+        return self.__disciplinas
+    
+    def exibir_info(self):
+        print(f"Nome: {self.nome}\nCódigo: {self.codigo}\nDisciplinas: ")
+        if (self.disciplinas):
+            for d in self.disciplinas:
+                print(f" - {d.nome}")
+        else:
+            print("Não há disciplinas cadastradas!")
+
