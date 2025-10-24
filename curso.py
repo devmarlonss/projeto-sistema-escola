@@ -29,3 +29,8 @@ class Curso:
         else:
             print("Não há disciplinas cadastradas!")
 
+    def adicionar_disc(self, disc):
+        if (isinstance(disc, Disciplina) and disc not in self.__disciplinas):
+            self.__disciplinas.append(disc)
+            return True
+        return False
