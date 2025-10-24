@@ -34,3 +34,9 @@ class Curso:
             self.__disciplinas.append(disc)
             return True
         return False
+
+    def remover_disc(self, disc):
+        if (disc in self.__disciplinas):
+            self.__disciplinas.remove(disc)
+            return True
+        return False
