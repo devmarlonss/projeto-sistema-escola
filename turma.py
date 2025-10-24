@@ -1,5 +1,6 @@
 # Classe Turma
 from curso import Curso
+from usuarios.aluno import Aluno
 
 class Turma:
     def __init__(self, codigo: str, curso: Curso, alunos: list = None):
@@ -28,6 +29,12 @@ class Turma:
                 print(f" - {a.nome}")
         else:
             print("Não há alunos cadastrados!")
+
+    def adicionar_aluno(self, aluno):
+        if (isinstance(aluno, Aluno) and aluno not in self.alunos):
+            self.alunos.append(aluno)
+            return True
+        return False
 
 
 if __name__ == "__main__":
