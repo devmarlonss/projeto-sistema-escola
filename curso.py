@@ -40,3 +40,19 @@ class Curso:
             self.__disciplinas.remove(disc)
             return True
         return False
+    
+if __name__ == "__main__":
+    disc1 = Disciplina("Matemática", "D001", 120)
+    disc2 = Disciplina("Português", "D002", 120)
+
+    curso1 = Curso("Informática", "C001")
+    curso1.exibir_info()
+
+    print()
+    curso1.adicionar_disc(disc1)
+    curso1.adicionar_disc(disc2)
+    curso1.exibir_info()
+
+    print()
+    curso1.remover_disc(disc2)
+    curso1.exibir_info()
