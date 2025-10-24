@@ -22,11 +22,16 @@ class Turma:
         return self.__alunos        
     
     def exibir_info(self):
-        print(f"Código: {self.codigo}\n Curso: {self.curso.nome}\n Alunos: ")
+        print(f"Código: {self.codigo}\nCurso: {self.curso.nome}\nAlunos: ")
         if (self.alunos):
             for a in self.alunos:
                 print(f" - {a.nome}")
         else:
             print("Não há alunos cadastrados!")
 
-    
+
+if __name__ == "__main__":
+    curso1 = Curso("Informática", "C001")
+
+    turma1 = Turma("T001", curso1)
+    turma1.exibir_info()
