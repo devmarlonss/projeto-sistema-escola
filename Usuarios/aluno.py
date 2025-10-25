@@ -1,3 +1,23 @@
 # Classe Aluno
-class Aluno():
-    pass
+from usuarios.usuario import Usuario
+from curso import Curso
+
+class Aluno(Usuario):
+    def __init__(self, nome, cpf, email, senha, curso: Curso, boletim: dir = None):
+        super().__init__(nome, cpf, email, senha)
+        if boletim is None:
+            boletim = {}
+        self.__curso = curso
+        self.__boletim = boletim
+
+    @property
+    def curso(self):
+        return self.__curso
+    
+    @property
+    def boletim(self):
+        return self.__boletim
+    
+    def exibir_info(self):
+        super().exibir_info()
+        print(f"Curso: {self.curso.nome}")
