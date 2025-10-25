@@ -18,5 +18,9 @@ class Professor(Usuario):
     
     def exibir_info(self):
         super().exibir_info()
-        print(f"Disciplina: {self.disciplina.nome}\nSalário: {self.salario:.2f}")
+        print(f"Disciplina: {self.disciplina.nome}\nSalário: R$ {self.salario:.2f}")
     
+if __name__ == "__main__":
+    disc = Disciplina("Matemática", "D001", 120)
+    prof = Professor("Prof1", "00000000001", "prof@gmail.com", "prof123", disc, 5545.22)
+    prof.exibir_info()
