@@ -23,9 +23,12 @@ class Aluno(Usuario):
         print(f"Curso: {self.curso.nome}")
 
     def ver_boletim(self):
-        for k, v in self.boletim.items():
-            print(f"\nDisciplina: {k}")
-            print(f"Notas: {v}")
+        if (self.boletim):
+            for k, v in self.boletim.items():
+                print(f"\nDisciplina: {k}")
+                print(f"Notas: {v}")
+        else:
+            print("Não há notas cadastradas!")
 
     def adicionar_nota(self, disciplina, nota):
         try:
