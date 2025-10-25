@@ -34,8 +34,6 @@ class Disciplina:
         return Disciplina(disc["nome"], disc["codigo"], disc["carga_horaria"])
 
 if __name__ == "__main__":
-    disc = Disciplina("nice", "D002", 40)
+    disc = Disciplina("Matemática", "D002", 40)
 
-    disc.salvar_disc()
-    
-    
+    disc.exibir_info()
