@@ -43,8 +43,10 @@ if __name__ == "__main__":
     aluno1 = Aluno("Marlon", "12312312312", "example@gmail.com", "senha123", curso1)
 
     aluno1.exibir_info()
+    aluno1.ver_boletim()
 
-    aluno1.boletim["Matemática"] = [8.5, 9.0]
-    aluno1.boletim["Português"] = [8.0, 10]
+    aluno1.adicionar_nota("Matemática", 8.5)
+    aluno1.adicionar_nota("Matemática", 9.0)
+    aluno1.adicionar_nota("Português", 10.0)
 
     aluno1.ver_boletim()
