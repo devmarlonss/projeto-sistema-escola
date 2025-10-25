@@ -1,5 +1,5 @@
 # Classe Aluno
-from usuarios.usuario import Usuario
+from usuario import Usuario
 from curso import Curso
 
 class Aluno(Usuario):
@@ -21,3 +21,10 @@ class Aluno(Usuario):
     def exibir_info(self):
         super().exibir_info()
         print(f"Curso: {self.curso.nome}")
+    
+
+if __name__ == "__main__":
+    curso1 = Curso("Informática", "C001")
+    aluno1 = Aluno("Marlon", "12312312312", "example@gmail.com", "senha123", curso1)
+
+    aluno1.exibir_info()

@@ -1,6 +1,6 @@
 # Classe Turma
 from curso import Curso
-from usuarios.aluno import Aluno
+from aluno import Aluno
 
 class Turma:
     def __init__(self, codigo: str, curso: Curso, alunos: list = None):
