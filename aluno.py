@@ -26,7 +26,17 @@ class Aluno(Usuario):
         for k, v in self.boletim.items():
             print(f"\nDisciplina: {k}")
             print(f"Notas: {v}")
-    
+
+    def adicionar_nota(self, disciplina, nota):
+        try:
+            if (disciplina in self.boletim):
+                self.boletim[disciplina].append(nota)
+            else:
+                self.boletim[disciplina] = [nota]
+            return True
+        except Exception:
+            return False
+            
 
 if __name__ == "__main__":
     curso1 = Curso("Informática", "C001")
