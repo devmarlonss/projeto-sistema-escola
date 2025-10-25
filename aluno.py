@@ -23,8 +23,8 @@ class Aluno(Usuario):
         print(f"Curso: {self.curso.nome}")
 
     def ver_boletim(self):
-        for k, v in self.boletim:
-            print(f"Disciplina: {k}")
+        for k, v in self.boletim.items():
+            print(f"\nDisciplina: {k}")
             print(f"Notas: {v}")
     
 
@@ -33,3 +33,8 @@ if __name__ == "__main__":
     aluno1 = Aluno("Marlon", "12312312312", "example@gmail.com", "senha123", curso1)
 
     aluno1.exibir_info()
+
+    aluno1.boletim["Matemática"] = [8.5, 9.0]
+    aluno1.boletim["Português"] = [8.0, 10]
+
+    aluno1.ver_boletim()
