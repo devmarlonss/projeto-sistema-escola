@@ -1,4 +1,5 @@
 # Classe Disciplina
+from salvar_carregar import *
 
 class Disciplina:
     def __init__(self, nome: str, codigo: str, carga_horaria: int):
@@ -20,6 +21,19 @@ class Disciplina:
 
     def exibir_info(self):
         print(f"Nome: {self.nome}\nCódigo: {self.codigo}\nCarga Horária: {self.carga_horaria} horas")
+
+    def salvar_disc(self):
+        disciplinas = self.carregar_disc()
+        disciplinas.append(self.disc_dict())
+        salvar_dados(disciplinas)
+
+    @classmethod
+    def carregar_disc(cls):
+        disciplinas = carregar_dados("disciplina.json")
+        disc = []
+        for d in disciplinas:
+            disc.append(cls.dict_disc(d))
+        return disc
 
     def disc_dict(self):
         return {
