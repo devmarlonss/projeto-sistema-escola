@@ -24,3 +24,9 @@ class Usuario:
     
     def exibir_info(self):
         print(f"Nome: {self.nome}\nCPF: {self.cpf}\nEmail: {self.email}\nSenha: {self.senha}")
+
+
+if __name__ == "__main__":
+    usu1 = Usuario("Marlon", "12312312312", "example@gmail.com", "senha123")
+
+    usu1.exibir_info()
