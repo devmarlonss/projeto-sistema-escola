@@ -21,6 +21,11 @@ class Aluno(Usuario):
     def exibir_info(self):
         super().exibir_info()
         print(f"Curso: {self.curso.nome}")
+
+    def ver_boletim(self):
+        for k, v in self.boletim:
+            print(f"Disciplina: {k}")
+            print(f"Notas: {v}")
     
 
 if __name__ == "__main__":
