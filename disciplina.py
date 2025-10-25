@@ -22,19 +22,6 @@ class Disciplina:
     def exibir_info(self):
         print(f"Nome: {self.nome}\nCódigo: {self.codigo}\nCarga Horária: {self.carga_horaria} horas")
 
-    def salvar_disc(self):
-        disciplinas = self.carregar_disc()
-        disciplinas.append(self.disc_dict())
-        salvar_dados(disciplinas)
-
-    @classmethod
-    def carregar_disc(cls):
-        disciplinas = carregar_dados("disciplina.json")
-        disc = []
-        for d in disciplinas:
-            disc.append(cls.dict_disc(d))
-        return disc
-
     def disc_dict(self):
         return {
             "nome": self.nome,
@@ -47,5 +34,8 @@ class Disciplina:
         return Disciplina(disc["nome"], disc["codigo"], disc["carga_horaria"])
 
 if __name__ == "__main__":
-    disc = Disciplina("Matemática", "D001", 120)
-    disc.exibir_info()
+    disc = Disciplina("nice", "D002", 40)
+
+    disc.salvar_disc()
+    
+    
