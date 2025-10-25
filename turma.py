@@ -1,6 +1,6 @@
 # Classe Turma
 from curso import Curso
-from usuarios.aluno import Aluno
+from aluno import Aluno
 
 class Turma:
     def __init__(self, codigo: str, curso: Curso, alunos: list = None):
@@ -44,6 +44,15 @@ class Turma:
 
 if __name__ == "__main__":
     curso1 = Curso("Informática", "C001")
+    aluno1 = Aluno("Marlon", "12312312312", "example@gmail.com", "senha123", curso1)
+    aluno2 = Aluno("Rian", "12312311211", "example@gmail.com", "senha123", curso1)
 
     turma1 = Turma("T001", curso1)
+    turma1.exibir_info()
+    print()
+    turma1.adicionar_aluno(aluno1)
+    turma1.adicionar_aluno(aluno2)
+    turma1.exibir_info()
+    print()
+    turma1.remover_aluno(aluno2)
     turma1.exibir_info()
