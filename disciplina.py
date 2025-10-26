@@ -1,5 +1,4 @@
 # Classe Disciplina
-from salvar_carregar import *
 
 class Disciplina:
     def __init__(self, nome: str, codigo: str, carga_horaria: int):

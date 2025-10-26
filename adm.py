@@ -6,7 +6,9 @@ class Adm(Usuario):
         super().__init__(nome, cpf, email, senha)
 
     def adm_dict(self):
-        return super().usuario_dict()
+        dados = super().usuario_dict()
+        dados["tipo"] = "Adm"
+        return dados
     
     @staticmethod
     def dict_adm(adm):

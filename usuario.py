@@ -1,4 +1,8 @@
 # Classe base Usuario
+from aluno import Aluno
+from professor import Professor
+from adm import Adm
+
 class Usuario:
     def __init__(self, nome: str, cpf: str, email: str, senha: str):
         self.__nome = nome
@@ -33,6 +37,19 @@ class Usuario:
             "email": self.email,
             "senha": self.senha
         }
+    
+    @staticmethod
+    def dict_usuario(usuario):
+        tipo = usuario["tipo"]
+
+        if (tipo == "Aluno"):
+            return Aluno.dict_aluno(usuario)
+        elif (tipo == "Professor"):
+            return Professor.dict_prof(usuario)
+        elif (tipo == "Adm"):
+            return Adm.dict_adm(usuario)
+        else:
+            return Usuario(usuario["nome"], usuario["cpf"], usuario["email"], usuario["senha"])
 
 
 if __name__ == "__main__":
