@@ -204,6 +204,11 @@ class Sistema:
             return False
         return False
     
+    def ver_boletim_aluno(self, aluno):
+        if (isinstance(aluno, Aluno)):
+            aluno.ver_boletim()
+            return True
+        return False
 
     # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):
