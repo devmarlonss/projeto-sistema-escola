@@ -40,6 +40,48 @@ class Sistema:
     def adms(self):
         return self.__adms
     
+    # Seção Gerência de Turmas
+    def buscar_turma(self, codigo):
+        for t in self.turmas:
+            if (t.codigo == codigo):
+                return t            
+        return None
+    
+    def add_turma(self, codigo, curso):
+        if (isinstance(curso, Curso)):
+            self.cursos.append(Curso(codigo, curso))
+            return True
+        return False
+    
+    def rem_turma(self, curso):
+        if (isinstance(curso, Curso)):
+            self.cursos.remove(curso)
+            return True
+        return False
+    
+    def add_aluno_turma(self, aluno, turma):
+        if (isinstance(aluno, Aluno)):
+            if (isinstance(turma, Turma)):
+                turma.adicionar_aluno(aluno)
+                return True
+            return False
+        return False
+    
+    def rem_aluno_turma(self, aluno, turma):
+        if (isinstance(aluno, Aluno)):
+            if (isinstance(turma, Turma)):
+                turma.remover_aluno(aluno)
+                return True
+            return False
+        return False
+    
+    def exibir_info_turma(self, turma):
+        if (isinstance(turma, Turma)):
+            turma.exibir_info()
+            return True
+        return False
+
+
     # Seção Gerência de Cursos
     def buscar_curso(self, codigo):
         for c in self.cursos:
@@ -54,12 +96,6 @@ class Sistema:
     def rem_curso(self, curso):
         if (isinstance(curso, Curso)):
             self.cursos.remove(curso)
-            return True
-        return False
-    
-    def exibir_info_curso(self, curso):
-        if (isinstance(curso, Curso)):
-            curso.exibir_info()
             return True
         return False
     
@@ -78,7 +114,13 @@ class Sistema:
                 return True
             return False
         return False
-
+    
+    def exibir_info_curso(self, curso):
+        if (isinstance(curso, Curso)):
+            curso.exibir_info()
+            return True
+        return False
+    
     
     # Seção Gerência de Disciplinas
     def buscar_disc(self, codigo):
@@ -152,6 +194,7 @@ class Sistema:
             usuario.exibir_info()
             return True
         return False
+    
 
     # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):
