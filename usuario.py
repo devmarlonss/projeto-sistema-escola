@@ -25,6 +25,15 @@ class Usuario:
     def exibir_info(self):
         print(f"Nome: {self.nome}\nCPF: {self.cpf}\nEmail: {self.email}\nSenha: {self.senha}")
 
+    def usuario_dict(self):
+        return {
+            "tipo": "Usuario",
+            "nome": self.nome,
+            "cpf": self.cpf,
+            "email": self.email,
+            "senha": self.senha
+        }
+
 
 if __name__ == "__main__":
     usu1 = Usuario("Marlon", "12312312312", "example@gmail.com", "senha123")
