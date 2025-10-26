@@ -39,6 +39,55 @@ class Sistema:
     @property
     def adms(self):
         return self.__adms
+    
+    # Seção Gerência de Usuários
+    def buscar_usuario(self, cpf):
+        for u in self.alunos:
+            if (u.cpf == cpf):
+                return u
+        for u in self.professores:
+            if (u.cpf == cpf):
+                return u
+        for u in self.adms:
+            if (u.cpf == cpf):
+                return u
+        return None
+
+    def add_usuario(self, tipo, nome, cpf, email, senha, curso = None, disciplina = None, salario = None):
+        if (tipo == "Aluno"):
+            if (isinstance(curso, Curso)):
+                self.alunos.append(Aluno(nome, cpf, email, senha, curso))
+                return True
+            return False
+        elif (tipo == "Professor"):
+            if (isinstance(disciplina, Disciplina) and salario):
+                self.professores.append(Professor(nome, cpf, email, senha, disciplina, salario))
+                return True
+            return False
+        elif (tipo == "Adm"):
+            self.adms.append(Adm(nome, cpf, email, senha))
+            return True
+        return False
+    
+    def rem_usuario(self, usuario):
+        if (usuario):
+            if (isinstance(usuario, Aluno)):
+                self.alunos.remove(usuario)
+                return True
+            elif (isinstance(usuario, Professor)):
+                self.professores.remove(usuario)
+                return True
+            elif (isinstance(usuario, Adm)):
+                self.adms.remove(usuario)
+                return True
+            return False
+        return False
+    
+    def exibir_info_usu(self, usuario):
+        if (usuario):
+            usuario.exibir_info()
+            return True
+        return False
 
     # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):
