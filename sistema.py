@@ -68,7 +68,21 @@ class Sistema:
             self.adms.append(Adm(nome, cpf, email, senha))
             return True
         return False
-        
+    
+    def rem_usuario(self, cpf):
+        usuario = self.buscar_usuario(cpf)
+        if (usuario):
+            if (isinstance(usuario, Aluno)):
+                self.alunos.remove(usuario)
+                return True
+            elif (isinstance(usuario, Professor)):
+                self.professores.remove(usuario)
+                return True
+            elif (isinstance(usuario, Adm)):
+                self.adms.remove(usuario)
+                return True
+            return False
+        return False
 
     # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):
