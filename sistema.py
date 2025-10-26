@@ -276,7 +276,7 @@ class Sistema:
         salvar_dados("usuarios.json", dados)
 
     @staticmethod
-    def verificar_cpf(cpf):
+    def iscpf(cpf):
         return (cpf.isdigit() and len(cpf) == 11)
 
 if __name__ == "__main__":
