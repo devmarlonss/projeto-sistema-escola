@@ -195,6 +195,15 @@ class Sistema:
             return True
         return False
     
+    def lancar_nota(self, professor, aluno, nota):
+        if (isinstance(professor, Professor)):
+            if (isinstance(aluno, Aluno)):
+                if (aluno.adicionar_nota(professor.disciplina.nome, nota)):
+                    return True
+                return False
+            return False
+        return False
+    
 
     # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):

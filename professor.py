@@ -20,13 +20,6 @@ class Professor(Usuario):
     def exibir_info(self):
         super().exibir_info()
         print(f"Disciplina: {self.disciplina.nome}\nSalário: R$ {self.salario:.2f}")
-
-    def lancar_nota(self, aluno, nota):
-        if (isinstance(aluno, Aluno)):
-            if (aluno.adicionar_nota(self.disciplina.nome, nota)):
-                return True
-            return False
-        return False
     
     def prof_dict(self):
         dados = super().usuario_dict()
