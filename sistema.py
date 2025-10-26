@@ -41,9 +41,21 @@ class Sistema:
         return self.__adms
     
     # Seção Gerência de Usuários
+    def buscar_usuario(self, cpf):
+        for u in self.alunos:
+            if (u.cpf == cpf):
+                return u
+        for u in self.professores:
+            if (u.cpf == cpf):
+                return u
+        for u in self.adms:
+            if (u.cpf == cpf):
+                return u
+        return None
+
     def add_usuario(self, tipo, nome, cpf, email, senha, curso = None, disciplina = None, salario = None):
         if (tipo == "Aluno"):
-            if (curso):
+            if (curso and cpf not in self.alunos):
                 self.alunos.append(Aluno(nome, cpf, email, senha, curso))
                 return True
             return False
