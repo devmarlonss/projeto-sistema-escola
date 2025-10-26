@@ -83,6 +83,13 @@ class Sistema:
                 return True
             return False
         return False
+    
+    def exibir_info_usu(self, cpf):
+        usuario = self.buscar_usuario(cpf)
+        if (usuario):
+            usuario.exibir_info()
+            return True
+        return False
 
     # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):
