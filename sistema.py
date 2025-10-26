@@ -73,28 +73,14 @@ class Sistema:
         turmas = carregar_dados("turmas.json")
         self.__turmas = []
         for t in turmas:
-            curso = Curso.dict_curso(t["curso"])
-            
-            alunos = []
-            for a in t["alunos"]:
-                alunos.append(Aluno.dict_aluno(a))
+            self.turmas.append(Turma.dict_turma(t))
+        return self.turmas
 
     def salvar_turma(self):
         dados = []
         for t in self.turmas:
-            curso_dict = Curso.curso_dict(t.curso)
-
-            alunos_dict = []
-            for a in t.alunos:
-                alunos_dict.append(Aluno.aluno_dict(a))
-
-            turma_dict = Turma.turma_dict(t)
-            turma_dict["curso"] = curso_dict
-            turma_dict["alunos"] = alunos_dict
-            
-            dados.append(turma_dict)
+            dados.append(Turma.turma_dict(t))
         salvar_dados("turmas.json", dados)
-
 
 if __name__ == "__main__":
     sistema = Sistema()
@@ -112,14 +98,21 @@ if __name__ == "__main__":
     # curso1.adicionar_disc(disc2)
     # sistema.cursos.append(curso1)
     # sistema.salvar_curso()
-    print(sistema.carregar_curso())
-    sistema.cursos[0].exibir_info()
+    # print(sistema.carregar_curso())
+    # sistema.cursos[0].exibir_info()
 
     # disc1 = Disciplina("Matemática", "D001", 120)
     # disc2 = Disciplina("Português", "D002", 120)
     # curso1 = Curso("Informática", "C001")
     # curso1.adicionar_disc(disc1)
     # curso1.adicionar_disc(disc2)
-    # sistema.cursos.append(curso1)
-    # turma1 = Turma("T001", curso1, )
+    # aluno1 = Aluno("Pedro", "12312312312", "example@gmail.com", "senha123", curso1)
+    # aluno2 = Aluno("Rian", "12312311211", "example@gmail.com", "senha123", curso1)
+    # turma1 = Turma("T001", curso1)
+    # turma1.adicionar_aluno(aluno1)
+    # turma1.adicionar_aluno(aluno2)
+    # sistema.turmas.append(turma1)
+    # sistema.salvar_turma()
+    print(sistema.carregar_turma())
+    sistema.turmas[0].exibir_info()
     
