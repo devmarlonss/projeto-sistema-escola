@@ -40,6 +40,14 @@ class Sistema:
     def adms(self):
         return self.__adms
     
+    # Seção Gerência de Disciplinas
+    def buscar_disc(self, codigo):
+        for d in self.disciplinas:
+            if (d.codigo == codigo):
+                return d
+        return None
+
+    
     # Seção Gerência de Usuários
     def buscar_usuario(self, cpf):
         for u in self.alunos:
