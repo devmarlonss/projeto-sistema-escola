@@ -82,15 +82,40 @@ class Sistema:
             dados.append(Turma.turma_dict(t))
         salvar_dados("turmas.json", dados)
 
+    # Seção Carregar/Salvar - Usuários
+    def carregar_usuario(self):
+        usuarios = carregar_dados("usuarios.json")
+        for u in usuarios:
+            usu = Usuario.dict_usuario(u)
+            if (isinstance(usu, Aluno)):
+                self.alunos.append(usu)
+            elif (isinstance(usu, Professor)):
+                self.professores.append(usu)
+            elif (isinstance(usu, Adm)):
+                self.adms.append(usu)
+        return (self.alunos, self.professores, self.adms)
+
+    def salvar_usuario(self):
+        dados = []
+        for aluno in self.alunos:
+            dados.append(Aluno.aluno_dict(aluno))
+        for prof in self.professores:
+            dados.append(Professor.prof_dict(prof))
+        for adm in self.adms:
+            dados.append(Adm.adm_dict(adm))
+        salvar_dados("usuarios.json", dados)
+
 if __name__ == "__main__":
     sistema = Sistema()
 
+    # == Teste Disciplina ==
     # disc1 = Disciplina("Matemática", "D001", 120)
     # sistema.disciplinas.append(disc1)
     # sistema.salvar_disc()
     # print(sistema.carregar_disc())
     # sistema.disciplinas[0].exibir_info()
 
+    # == Teste Curso ==
     # disc1 = Disciplina("Matemática", "D001", 120)
     # disc2 = Disciplina("Português", "D002", 120)
     # curso1 = Curso("Informática", "C001")
@@ -101,6 +126,7 @@ if __name__ == "__main__":
     # print(sistema.carregar_curso())
     # sistema.cursos[0].exibir_info()
 
+    # == Teste Turma ==
     # disc1 = Disciplina("Matemática", "D001", 120)
     # disc2 = Disciplina("Português", "D002", 120)
     # curso1 = Curso("Informática", "C001")
@@ -113,6 +139,29 @@ if __name__ == "__main__":
     # turma1.adicionar_aluno(aluno2)
     # sistema.turmas.append(turma1)
     # sistema.salvar_turma()
-    print(sistema.carregar_turma())
-    sistema.turmas[0].exibir_info()
+    # print(sistema.carregar_turma())
+    # sistema.turmas[0].exibir_info()
     
+    # == Teste Usuários ==
+    # disc1 = Disciplina("Matemática", "D001", 120)
+    # disc2 = Disciplina("Português", "D002", 120)
+    # curso1 = Curso("Informática", "C001")
+    # curso1.adicionar_disc(disc1)
+    # curso1.adicionar_disc(disc2)
+    # aluno1 = Aluno("Pedro", "12312312312", "example@gmail.com", "senha123", curso1)
+    # aluno2 = Aluno("Rian", "12312311211", "example@gmail.com", "senha123", curso1)
+    # prof1 = Professor("Prof1", "00000000001", "prof@gmail.com", "prof123", disc1, 5545.22)
+    # adm1 = Adm("Administrator", "22222222211", "adm@gmail.com", "adm123")
+    # prof1.lancar_nota(aluno1, 9.0)
+    # sistema.alunos.append(aluno1)
+    # sistema.alunos.append(aluno2)
+    # sistema.professores.append(prof1)
+    # sistema.adms.append(adm1)
+    # sistema.salvar_usuario()
+    # print(sistema.carregar_usuario())
+    # sistema.alunos[0].exibir_info()
+    # sistema.alunos[0].ver_boletim()
+    # print()
+    # sistema.professores[0].exibir_info()
+    # print()
+    # sistema.adms[0].exibir_info()
