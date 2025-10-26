@@ -54,7 +54,10 @@ class Curso:
     
     @staticmethod
     def dict_curso(curso):
-        return Curso(curso["nome"], curso["codigo"], curso["disciplinas"])
+        disc = []
+        for d in curso["disciplinas"]:
+            disc.append(Disciplina.dict_disc(d))
+        return Curso(curso["nome"], curso["codigo"], disc)
     
 if __name__ == "__main__":
     disc1 = Disciplina("Matemática", "D001", 120)
