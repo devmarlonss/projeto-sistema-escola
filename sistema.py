@@ -40,6 +40,46 @@ class Sistema:
     def adms(self):
         return self.__adms
     
+    # Seção Gerência de Cursos
+    def buscar_curso(self, codigo):
+        for c in self.cursos:
+            if (c.codigo == codigo):
+                return c
+        return None
+    
+    def add_curso(self, nome, codigo):
+        self.cursos.append(Curso(nome, codigo))
+        return True
+    
+    def rem_curso(self, curso):
+        if (isinstance(curso, Curso)):
+            self.cursos.remove(curso)
+            return True
+        return False
+    
+    def exibir_info_curso(self, curso):
+        if (isinstance(curso, Curso)):
+            curso.exibir_info()
+            return True
+        return False
+    
+    def add_disc_curso(self, disc, curso):
+        if (isinstance(disc, Disciplina)):
+            if (isinstance(curso, Curso)):
+                curso.adicionar_disc(disc)
+                return True
+            return False
+        return False
+    
+    def rem_disc_curso(self, disc, curso):
+        if (isinstance(disc, Disciplina)):
+            if (isinstance(curso, Curso)):
+                curso.remover_disc(disc)
+                return True
+            return False
+        return False
+
+    
     # Seção Gerência de Disciplinas
     def buscar_disc(self, codigo):
         for d in self.disciplinas:
@@ -58,7 +98,7 @@ class Sistema:
         return False
     
     def exibir_info_disc(self, disc):
-        if (disc):
+        if (isinstance(disc, Disciplina)):
             disc.exibir_info()
             return True
         return False
