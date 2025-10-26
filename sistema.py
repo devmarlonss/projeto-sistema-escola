@@ -69,8 +69,7 @@ class Sistema:
             return True
         return False
     
-    def rem_usuario(self, cpf):
-        usuario = self.buscar_usuario(cpf)
+    def rem_usuario(self, usuario):
         if (usuario):
             if (isinstance(usuario, Aluno)):
                 self.alunos.remove(usuario)
@@ -84,8 +83,7 @@ class Sistema:
             return False
         return False
     
-    def exibir_info_usu(self, cpf):
-        usuario = self.buscar_usuario(cpf)
+    def exibir_info_usu(self, usuario):
         if (usuario):
             usuario.exibir_info()
             return True
