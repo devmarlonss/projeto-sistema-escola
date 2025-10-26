@@ -40,9 +40,9 @@ class Sistema:
     def adms(self):
         return self.__adms
 
-    # Seção Carregar/Salvar 
+    # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):
-        disciplinas = carregar_dados("disciplina.json")
+        disciplinas = carregar_dados("disciplinas.json")
         self.__disciplinas = []
         for d in disciplinas:
             self.disciplinas.append(Disciplina.dict_disc(d))
@@ -52,12 +52,52 @@ class Sistema:
         dados = []
         for d in self.disciplinas:
             dados.append(Disciplina.disc_dict(d))
-        salvar_dados("disciplina.json", dados)
+        salvar_dados("disciplinas.json", dados)
     
+    # Seção Carregar/Salvar - Cursos
+    def carregar_curso(self):
+        cursos = carregar_dados("cursos.json")
+        self.__cursos = []
+        for c in cursos:
+            disc = []
+            for d in c["disciplinas"]:
+                disc.append(Disciplina.dict_disc(d))
+
+            c["disciplinas"] = disc
+
+            self.cursos.append(Curso.dict_curso(c))
+        return self.cursos
+    
+    def salvar_curso(self):
+        dados = []
+        for c in self.cursos:
+            disc_dict = []
+            for d in c.disciplinas:
+                disc_dict.append(Disciplina.disc_dict(d))
+            
+            curso_dict = Curso.curso_dict(c)
+            curso_dict["disciplinas"] = disc_dict
+
+            dados.append(curso_dict)
+        salvar_dados("cursos.json", dados)
+
+
 if __name__ == "__main__":
     sistema = Sistema()
+
     # disc1 = Disciplina("Matemática", "D001", 120)
     # sistema.disciplinas.append(disc1)
     # sistema.salvar_disc()
-    print(sistema.carregar_disc())
-    sistema.disciplinas[0].exibir_info()
+    # print(sistema.carregar_disc())
+    # sistema.disciplinas[0].exibir_info()
+
+    # disc1 = Disciplina("Matemática", "D001", 120)
+    # disc2 = Disciplina("Português", "D002", 120)
+    # curso1 = Curso("Informática", "C001")
+    # curso1.adicionar_disc(disc1)
+    # curso1.adicionar_disc(disc2)
+    # sistema.cursos.append(curso1)
+    # sistema.salvar_curso()
+    print(sistema.carregar_curso())
+    sistema.cursos[0].exibir_info()
+    
