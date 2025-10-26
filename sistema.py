@@ -55,12 +55,12 @@ class Sistema:
 
     def add_usuario(self, tipo, nome, cpf, email, senha, curso = None, disciplina = None, salario = None):
         if (tipo == "Aluno"):
-            if (curso and cpf not in self.alunos):
+            if (isinstance(curso, Curso)):
                 self.alunos.append(Aluno(nome, cpf, email, senha, curso))
                 return True
             return False
         elif (tipo == "Professor"):
-            if (disciplina and salario):
+            if (isinstance(disciplina, Disciplina) and salario):
                 self.professores.append(Professor(nome, cpf, email, senha, disciplina, salario))
                 return True
             return False
