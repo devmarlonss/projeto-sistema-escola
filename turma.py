@@ -42,6 +42,17 @@ class Turma:
             return True
         return False
 
+    def turma_dict(self):
+        return {
+            "codigo": self.codigo,
+            "curso": self.curso,
+            "alunos": self.alunos
+        }
+    
+    @staticmethod
+    def dict_turma(turma):
+        return Turma(turma["codigo"], turma["curso"], turma["alunos"])
+
 if __name__ == "__main__":
     curso1 = Curso("Informática", "C001")
     aluno1 = Aluno("Marlon", "12312312312", "example@gmail.com", "senha123", curso1)

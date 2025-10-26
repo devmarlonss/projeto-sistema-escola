@@ -40,6 +40,17 @@ class Curso:
             self.disciplinas.remove(disc)
             return True
         return False
+
+    def curso_dict(self):
+        return {
+            "nome": self.nome,
+            "codigo": self.codigo,
+            "disciplinas": self.disciplinas
+        }
+    
+    @staticmethod
+    def dict_curso(curso):
+        return Curso(curso["nome"], curso["codigo"], curso["disciplinas"])
     
 if __name__ == "__main__":
     disc1 = Disciplina("Matemática", "D001", 120)
