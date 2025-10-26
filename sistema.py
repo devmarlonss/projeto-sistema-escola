@@ -40,6 +40,112 @@ class Sistema:
     def adms(self):
         return self.__adms
     
+    # Seção Gerência de Turmas
+    def buscar_turma(self, codigo):
+        for t in self.turmas:
+            if (t.codigo == codigo):
+                return t            
+        return None
+    
+    def add_turma(self, codigo, curso):
+        if (isinstance(curso, Curso)):
+            self.cursos.append(Curso(codigo, curso))
+            return True
+        return False
+    
+    def rem_turma(self, curso):
+        if (isinstance(curso, Curso)):
+            self.cursos.remove(curso)
+            return True
+        return False
+    
+    def add_aluno_turma(self, aluno, turma):
+        if (isinstance(aluno, Aluno)):
+            if (isinstance(turma, Turma)):
+                turma.adicionar_aluno(aluno)
+                return True
+            return False
+        return False
+    
+    def rem_aluno_turma(self, aluno, turma):
+        if (isinstance(aluno, Aluno)):
+            if (isinstance(turma, Turma)):
+                turma.remover_aluno(aluno)
+                return True
+            return False
+        return False
+    
+    def exibir_info_turma(self, turma):
+        if (isinstance(turma, Turma)):
+            turma.exibir_info()
+            return True
+        return False
+
+
+    # Seção Gerência de Cursos
+    def buscar_curso(self, codigo):
+        for c in self.cursos:
+            if (c.codigo == codigo):
+                return c
+        return None
+    
+    def add_curso(self, nome, codigo):
+        self.cursos.append(Curso(nome, codigo))
+        return True
+    
+    def rem_curso(self, curso):
+        if (isinstance(curso, Curso)):
+            self.cursos.remove(curso)
+            return True
+        return False
+    
+    def add_disc_curso(self, disc, curso):
+        if (isinstance(disc, Disciplina)):
+            if (isinstance(curso, Curso)):
+                curso.adicionar_disc(disc)
+                return True
+            return False
+        return False
+    
+    def rem_disc_curso(self, disc, curso):
+        if (isinstance(disc, Disciplina)):
+            if (isinstance(curso, Curso)):
+                curso.remover_disc(disc)
+                return True
+            return False
+        return False
+    
+    def exibir_info_curso(self, curso):
+        if (isinstance(curso, Curso)):
+            curso.exibir_info()
+            return True
+        return False
+    
+    
+    # Seção Gerência de Disciplinas
+    def buscar_disc(self, codigo):
+        for d in self.disciplinas:
+            if (d.codigo == codigo):
+                return d
+        return None
+    
+    def add_disciplina(self, nome, codigo, carga_horaria):
+        self.disciplinas.append(Disciplina(nome, codigo, carga_horaria))
+        return True
+    
+    def rem_disciplina(self, disc):
+        if (isinstance(disc, Disciplina)):
+            self.disciplinas.remove(disc)
+            return True
+        return False
+    
+    def exibir_info_disc(self, disc):
+        if (isinstance(disc, Disciplina)):
+            disc.exibir_info()
+            return True
+        return False
+
+    
     # Seção Gerência de Usuários
     def buscar_usuario(self, cpf):
         for u in self.alunos:
@@ -86,6 +192,21 @@ class Sistema:
     def exibir_info_usu(self, usuario):
         if (usuario):
             usuario.exibir_info()
+            return True
+        return False
+    
+    def lancar_nota(self, professor, aluno, nota):
+        if (isinstance(professor, Professor)):
+            if (isinstance(aluno, Aluno)):
+                if (aluno.adicionar_nota(professor.disciplina.nome, nota)):
+                    return True
+                return False
+            return False
+        return False
+    
+    def ver_boletim_aluno(self, aluno):
+        if (isinstance(aluno, Aluno)):
+            aluno.ver_boletim()
             return True
         return False
 
@@ -153,6 +274,16 @@ class Sistema:
         for adm in self.adms:
             dados.append(Adm.adm_dict(adm))
         salvar_dados("usuarios.json", dados)
+
+    @staticmethod
+    def iscpf(cpf):
+        return (cpf.isdigit() and len(cpf) == 11)
+    
+    def login(self, cpf, senha):
+        usuario = self.buscar_usuario(cpf)
+        if (usuario.senha == senha):
+            return True
+        return False
 
 if __name__ == "__main__":
     sistema = Sistema()
