@@ -275,6 +275,10 @@ class Sistema:
             dados.append(Adm.adm_dict(adm))
         salvar_dados("usuarios.json", dados)
 
+    @staticmethod
+    def verificar_cpf(cpf):
+        return (cpf.isdigit() and len(cpf) == 11)
+
 if __name__ == "__main__":
     sistema = Sistema()
 
