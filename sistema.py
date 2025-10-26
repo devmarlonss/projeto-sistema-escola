@@ -46,6 +46,22 @@ class Sistema:
             if (d.codigo == codigo):
                 return d
         return None
+    
+    def add_disciplina(self, nome, codigo, carga_horaria):
+        self.disciplinas.append(Disciplina(nome, codigo, carga_horaria))
+        return True
+    
+    def rem_disciplina(self, disc):
+        if (isinstance(disc, Disciplina)):
+            self.disciplinas.remove(disc)
+            return True
+        return False
+    
+    def exibir_info_disc(self, disc):
+        if (disc):
+            disc.exibir_info()
+            return True
+        return False
 
     
     # Seção Gerência de Usuários
