@@ -31,13 +31,14 @@ class Professor(Usuario):
     def prof_dict(self):
         dados = super().usuario_dict()
         dados["tipo"] = "Professor"
-        dados["disciplina"] = self.disciplina
+        dados["disciplina"] = Disciplina.disc_dict(self.disciplina)
         dados["salario"] = self.salario
         return dados
     
     @staticmethod
     def dict_prof(prof):
-        return Professor(prof["nome"], prof["cpf"], prof["email"], prof["senha"], prof["disciplina"], prof["salario"])
+        disc = Disciplina.dict_disc(prof["disciplina"])
+        return Professor(prof["nome"], prof["cpf"], prof["email"], prof["senha"], disc, prof["salario"])
     
 if __name__ == "__main__":
     from curso import Curso

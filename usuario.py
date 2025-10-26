@@ -1,7 +1,4 @@
 # Classe base Usuario
-from aluno import Aluno
-from professor import Professor
-from adm import Adm
 
 class Usuario:
     def __init__(self, nome: str, cpf: str, email: str, senha: str):
@@ -43,10 +40,13 @@ class Usuario:
         tipo = usuario["tipo"]
 
         if (tipo == "Aluno"):
+            from aluno import Aluno
             return Aluno.dict_aluno(usuario)
         elif (tipo == "Professor"):
+            from professor import Professor
             return Professor.dict_prof(usuario)
         elif (tipo == "Adm"):
+            from adm import Adm
             return Adm.dict_adm(usuario)
         else:
             return Usuario(usuario["nome"], usuario["cpf"], usuario["email"], usuario["senha"])

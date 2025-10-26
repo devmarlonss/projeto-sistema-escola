@@ -43,15 +43,22 @@ class Turma:
         return False
 
     def turma_dict(self):
+        alunos_dict = []
+        for a in self.alunos:
+            alunos_dict.append(Aluno.aluno_dict(a))
         return {
             "codigo": self.codigo,
-            "curso": self.curso,
-            "alunos": self.alunos
+            "curso": Curso.curso_dict(self.curso),
+            "alunos": alunos_dict
         }
     
     @staticmethod
     def dict_turma(turma):
-        return Turma(turma["codigo"], turma["curso"], turma["alunos"])
+        curso = Curso.dict_curso(turma["curso"])
+        alunos = []
+        for a in turma["alunos"]:
+            alunos.append(Aluno.dict_aluno(a))
+        return Turma(turma["codigo"], curso, alunos)
 
 if __name__ == "__main__":
     curso1 = Curso("Informática", "C001")

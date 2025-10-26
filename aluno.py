@@ -43,13 +43,14 @@ class Aluno(Usuario):
     def aluno_dict(self):
         dados = super().usuario_dict()
         dados["tipo"] = "Aluno"
-        dados["curso"] = self.curso
+        dados["curso"] = Curso.curso_dict(self.curso)
         dados["boletim"] = self.boletim
         return dados
     
     @staticmethod
     def dict_aluno(aluno):
-        return Aluno(aluno["nome"], aluno["cpf"], aluno["email"], aluno["senha"], aluno["curso"], aluno["boletim"])
+        curso = Curso.dict_curso(aluno["curso"])
+        return Aluno(aluno["nome"], aluno["cpf"], aluno["email"], aluno["senha"], curso, aluno["boletim"])
 
 if __name__ == "__main__":
     curso1 = Curso("Informática", "C001")
