@@ -39,6 +39,24 @@ class Sistema:
     @property
     def adms(self):
         return self.__adms
+    
+    # Seção Gerência de Usuários
+    def add_usuario(self, tipo, nome, cpf, email, senha, curso = None, disciplina = None, salario = None):
+        if (tipo == "Aluno"):
+            if (curso):
+                self.alunos.append(Aluno(nome, cpf, email, senha, curso))
+                return True
+            return False
+        elif (tipo == "Professor"):
+            if (disciplina and salario):
+                self.professores.append(Professor(nome, cpf, email, senha, disciplina, salario))
+                return True
+            return False
+        elif (tipo == "Adm"):
+            self.adms.append(Adm(nome, cpf, email, senha))
+            return True
+        return False
+        
 
     # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):
