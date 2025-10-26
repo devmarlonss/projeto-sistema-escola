@@ -59,26 +59,13 @@ class Sistema:
         cursos = carregar_dados("cursos.json")
         self.__cursos = []
         for c in cursos:
-            disc = []
-            for d in c["disciplinas"]:
-                disc.append(Disciplina.dict_disc(d))
-
-            c["disciplinas"] = disc
-
             self.cursos.append(Curso.dict_curso(c))
         return self.cursos
     
     def salvar_curso(self):
         dados = []
         for c in self.cursos:
-            disc_dict = []
-            for d in c.disciplinas:
-                disc_dict.append(Disciplina.disc_dict(d))
-            
-            curso_dict = Curso.curso_dict(c)
-            curso_dict["disciplinas"] = disc_dict
-
-            dados.append(curso_dict)
+            dados.append(Curso.curso_dict(c))
         salvar_dados("cursos.json", dados)
 
     # Seção Carregar/Salvar - Turmas
@@ -125,14 +112,14 @@ if __name__ == "__main__":
     # curso1.adicionar_disc(disc2)
     # sistema.cursos.append(curso1)
     # sistema.salvar_curso()
-    # print(sistema.carregar_curso())
-    # sistema.cursos[0].exibir_info()
+    print(sistema.carregar_curso())
+    sistema.cursos[0].exibir_info()
 
-    disc1 = Disciplina("Matemática", "D001", 120)
-    disc2 = Disciplina("Português", "D002", 120)
-    curso1 = Curso("Informática", "C001")
-    curso1.adicionar_disc(disc1)
-    curso1.adicionar_disc(disc2)
-    sistema.cursos.append(curso1)
-    turma1 = Turma("T001", curso1, )
+    # disc1 = Disciplina("Matemática", "D001", 120)
+    # disc2 = Disciplina("Português", "D002", 120)
+    # curso1 = Curso("Informática", "C001")
+    # curso1.adicionar_disc(disc1)
+    # curso1.adicionar_disc(disc2)
+    # sistema.cursos.append(curso1)
+    # turma1 = Turma("T001", curso1, )
     
