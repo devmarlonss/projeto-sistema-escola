@@ -42,10 +42,14 @@ class Curso:
         return False
 
     def curso_dict(self):
+        disc_dict = []
+        for d in self.disciplinas:
+            disc_dict.append(Disciplina.disc_dict(d))
+
         return {
             "nome": self.nome,
             "codigo": self.codigo,
-            "disciplinas": self.disciplinas
+            "disciplinas": disc_dict
         }
     
     @staticmethod
