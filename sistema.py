@@ -279,11 +279,9 @@ class Sistema:
     def iscpf(cpf):
         return (cpf.isdigit() and len(cpf) == 11)
     
-    def login(self, cpf, senha):
-        usuario = self.buscar_usuario(cpf)
-        if (usuario.senha == senha):
-            return True
-        return False
+    @staticmethod
+    def verificar_senha(usuario, senha):
+        return (usuario.senha == senha)
 
 if __name__ == "__main__":
     sistema = Sistema()
