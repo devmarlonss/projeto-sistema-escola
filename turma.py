@@ -23,7 +23,7 @@ class Turma:
         return self.__alunos        
     
     def exibir_info(self):
-        print(f"Código: {self.codigo}\nCurso: {self.curso.nome}\nAlunos: ")
+        print(f"\nCódigo: {self.codigo}\nCurso: {self.curso.nome}\nAlunos: ")
         if (self.alunos):
             for a in self.alunos:
                 print(f" - {a.nome}")
