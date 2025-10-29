@@ -12,7 +12,47 @@ def menu_adm(adm):
     pass
 
 def menu_prof(prof):
-    pass
+    while (True):
+        sleep(1)
+        print(f"\n== MENU - PROFESSOR ({prof.nome}) ==\n")
+        op4 = int(input("1 - Lançar Nota\n2 - Exibir Curso\n3 - Exibir Disciplina\n4 - Exibir Informações\n5 - Sair\nO que deseja fazer? "))
+
+        if (op4 == 1):
+            cpf_aluno = str(input("\nCPF do Aluno: "))
+            if (not sistema.iscpf(cpf_aluno)):
+                print("\nCPF INVÁLIDO!")
+                continue
+            nota = float(input("Nota: "))
+
+            aluno = sistema.buscar_usuario(cpf_aluno)
+            if (aluno):
+                if (sistema.lancar_nota(prof, aluno, nota)):
+                    print(f"\nNOTA ADICIONADA AO ALUNO {aluno.nome}!")
+                    sistema.salvar_usuario()
+                    continue
+                print("\nERRO AO ADICIONAR NOTA!")
+                continue
+            print("\nALUNO NÃO ENCONTRADO!")            
+        elif (op4 == 2):
+            cod_curso = str(input("\nCódigo do Curso: "))
+            curso = sistema.buscar_curso(cod_curso)
+            if (curso):
+                curso.exibir_info()
+                continue
+            print("\nCURSO NÃO ENCONTRADO!")
+        elif (op4 == 3):
+            cod_disc = str(input("\nCódigo da Disciplina: "))
+            disc = sistema.buscar_disc(cod_disc)
+            if (disc):
+                disc.exibir_info()
+                continue
+            print("\nDISCIPLINA NÃO ENCONTRADA!")
+        elif (op4 == 4):
+            prof.exibir_info()
+        elif (op4 == 5):
+            return None
+        else:
+            print("\nOPÇÃO INVÁLIDA")
 
 def menu_aluno(aluno):
     while (True):
@@ -22,7 +62,6 @@ def menu_aluno(aluno):
 
         if (op4 == 1):
             aluno.ver_boletim()
-            continue
         elif (op4 == 2):
             cod_curso = str(input("\nCódigo do Curso: "))
             curso = sistema.buscar_curso(cod_curso)
@@ -30,7 +69,6 @@ def menu_aluno(aluno):
                 curso.exibir_info()
                 continue
             print("\nCURSO NÃO ENCONTRADO!")
-            continue
         elif (op4 == 3):
             cod_disc = str(input("\nCódigo da Disciplina: "))
             disc = sistema.buscar_disc(cod_disc)
@@ -38,10 +76,8 @@ def menu_aluno(aluno):
                 disc.exibir_info()
                 continue
             print("\nDISCIPLINA NÃO ENCONTRADA!")
-            continue
         elif (op4 == 4):
             aluno.exibir_info()
-            continue
         elif (op4 == 5):
             return None
         else:
