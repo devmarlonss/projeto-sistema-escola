@@ -7,6 +7,30 @@ sistema.carregar_curso()
 sistema.carregar_turma()
 sistema.carregar_usuario()
 
+def login():
+    while (True):
+        print("\n== FAZER LOGIN ==\n")
+        cpf = str(input("CPF: "))
+        if (not sistema.iscpf(cpf)):
+            print("\nCPF INVÁLIDO!")
+            continue
+        senha = str(input("Senha: "))
+
+        usuario = sistema.buscar_usuario(cpf)
+        if (usuario is None):
+            print("\nUSUÁRIO NÃO CADASTRADO NO SISTEMA!")
+            op3 = str(input("\nDeseja seguir para o cadastro? [s/n] "))
+            if (op3.lower() == "s"):
+                return None
+            else:
+                continue
+            
+        if (not sistema.verificar_senha(usuario, senha)):
+            print("\nSENHA INCORRETA!")
+            continue
+        return True
+
+
 def cadastro():
     while (True):
         print("\n== CADASTRAR-SE ==\n")
@@ -69,10 +93,10 @@ def menu():
         op1 = int(input("1 - Cadastrar-se\n2 - Fazer Login\n3 - Sair\nO que deseja fazer? "))
 
         if (op1 == 1):
-            sucesso = cadastro()
-            if (sucesso == None):
+            result = cadastro()
+            if (result == None):
                 continue
-            elif (sucesso):
+            elif (result):
                 print("\nUSUÁRIO CADASTRADO COM SUCESSO!")
                 sistema.salvar_usuario()
                 to_login = True
@@ -88,6 +112,10 @@ def menu():
             continue
         
         if (to_login):
-            print("login")
-            break
+            res = login()
+            if (res is None):
+                continue
+            else:
+                print("\nLOGIN REALIZADO COM SUCESSO!")
+                break
 menu()
