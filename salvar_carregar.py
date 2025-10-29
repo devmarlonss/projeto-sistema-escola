@@ -9,5 +9,5 @@ def carregar_dados(arquivo):
     try:
         with open(("Dados/" + arquivo), "r", encoding="utf-8") as arq:
             return json.load(arq)
-    except FileNotFoundError:
+    except (FileNotFoundError, json.decoder.JSONDecodeError):
         return {}

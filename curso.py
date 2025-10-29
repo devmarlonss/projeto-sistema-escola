@@ -22,7 +22,7 @@ class Curso:
         return self.__disciplinas
     
     def exibir_info(self):
-        print(f"Nome: {self.nome}\nCódigo: {self.codigo}\nDisciplinas: ")
+        print(f"\nNome: {self.nome}\nCódigo: {self.codigo}\nDisciplinas: ")
         if (self.disciplinas):
             for d in self.disciplinas:
                 print(f" - {d.nome}")

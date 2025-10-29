@@ -24,7 +24,7 @@ class Usuario:
         return self.__senha
     
     def exibir_info(self):
-        print(f"Nome: {self.nome}\nCPF: {self.cpf}\nEmail: {self.email}\nSenha: {self.senha}")
+        print(f"\nNome: {self.nome}\nCPF: {self.cpf}\nEmail: {self.email}\nSenha: {self.senha}")
 
     def usuario_dict(self):
         return {

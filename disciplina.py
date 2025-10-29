@@ -19,7 +19,7 @@ class Disciplina:
         return self.__carga_horaria
 
     def exibir_info(self):
-        print(f"Nome: {self.nome}\nCódigo: {self.codigo}\nCarga Horária: {self.carga_horaria} horas")
+        print(f"\nNome: {self.nome}\nCódigo: {self.codigo}\nCarga Horária: {self.carga_horaria} horas")
 
     def disc_dict(self):
         return {
