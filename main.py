@@ -379,15 +379,19 @@ def login():
         usuario = sistema.buscar_usuario(cpf)
         if (usuario is None):
             print("\nUSUÁRIO NÃO CADASTRADO NO SISTEMA!")
-            op = str(input("\nDeseja seguir para o cadastro? [s/n] "))
-            if (op.lower() == "s"):
+            op = int(input("\n1 - VOLTAR\n2 - TENTAR NOVAMENTE\nO que deseja fazer? "))
+            if (op == 1):
                 return None
             else:
                 continue
             
         if (not sistema.verificar_senha(usuario, senha)):
             print("\nSENHA INCORRETA!")
-            continue
+            op = int(input("\n1 - VOLTAR\n2 - TENTAR NOVAMENTE\nO que deseja fazer? "))
+            if (op == 1):
+                return None
+            else:
+                continue
         return usuario
 
 
@@ -448,8 +452,9 @@ def cadastro():
             return sistema.add_usuario("Adm", nome, cpf, email, senha)        
 
 def main():
-    to_login = False
+    isloggedin = False
     while (True):
+        to_login = False
         sleep(1)
         print("\n== SISTEMA ESCOLAR ==\n")
         op = int(input("1 - Cadastrar-se\n2 - Fazer Login\n3 - Sair\nO que deseja fazer? "))
@@ -480,22 +485,24 @@ def main():
                 continue
             else:
                 print("\nLOGIN REALIZADO COM SUCESSO!")
+                isloggedin = True
                 sleep(1)
                 break
-
-    from aluno import Aluno
-    from professor import Professor
-    from adm import Adm
-    usuario = result_login
-    print(f"\n== BEM - VINDO, {usuario.nome}! ==")
-    sleep(1)
-    if (isinstance(usuario, Aluno)):
-        menu_aluno(usuario)
-    elif (isinstance(usuario, Professor)):
-        menu_prof(usuario)
-    elif (isinstance(usuario, Adm)):
-        menu_adm(usuario)
-    else:
-        print("\nERRO AO CARREGAR INTERFACE!")
+    
+    if (isloggedin):
+        from aluno import Aluno
+        from professor import Professor
+        from adm import Adm
+        usuario = result_login
+        print(f"\n== BEM - VINDO, {usuario.nome}! ==")
+        sleep(1)
+        if (isinstance(usuario, Aluno)):
+            menu_aluno(usuario)
+        elif (isinstance(usuario, Professor)):
+            menu_prof(usuario)
+        elif (isinstance(usuario, Adm)):
+            menu_adm(usuario)
+        else:
+            print("\nERRO AO CARREGAR INTERFACE!")
 
 main()
