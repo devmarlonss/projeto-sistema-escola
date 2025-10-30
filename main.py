@@ -11,7 +11,7 @@ sistema.carregar_usuario()
 def menu_adm(adm):
     while (True):
         sleep(1)
-        print(f"\n== Menu - ADM ({adm.nome}) ==\n")
+        print(f"\n== MENU - ADM ({adm.nome}) ==\n")
         op = int(input("== Gerência Usuário ==\n1 - Adicionar Usuário\n2 - Remover Usuário\n3 - Exibir Usuário\n\n== Gerência Disciplina ==\n4 - Adicionar Disciplina\n5 - Remover Disciplina\n6 - Exibir Disciplina\n\n== Gerência Curso ==\n7 - Adicionar Curso\n8 - Remover Curso\n9 - Adicionar Disciplina ao Curso\n10 - Remover Disciplina do Curso\n11 - Exibir Curso\n\n== Gerência Turma ==\n12 - Adicionar Turma\n13 - Remover Turma\n14 - Adicionar Aluno à Turma\n15 - Remover Aluno da Turma\n16 - Exibir Turma\n\n17 - Sair\n\nO que deseja fazer? "))
 
         # Gerência Usuário
@@ -133,15 +133,15 @@ def menu_adm(adm):
             discincurso = False
             for d in curso.disciplinas:
                 if (disc.codigo in d.codigo):
-                    print("\nDISCIPLINA JÁ ESTÁ NO CURSO!")
                     discincurso = True
                     break
 
             if (discincurso):
+                print("\nDISCIPLINA JÁ ESTÁ NO CURSO!")
                 continue
 
             if (sistema.add_disc_curso(disc, curso)):
-                print("\nDISCIPLINA FOI ADICIONADA AO CURSO COM SUCESSO!")
+                print("\nDISCIPLINA ADICIONADA AO CURSO COM SUCESSO!")
                 sistema.salvar_curso()
                 continue
             print("\nERRO AO ADICIONAR DISCIPLINA AO CURSO!")
@@ -166,7 +166,7 @@ def menu_adm(adm):
                 continue
 
             if (sistema.rem_disc_curso(disc, curso)):
-                print("\nDISCIPLINA FOI REMOVIDA DO CURSO COM SUCESSO!")
+                print("\nDISCIPLINA REMOVIDA DO CURSO COM SUCESSO!")
                 sistema.salvar_curso()
                 continue
             print("\nERRO AO REMOVER DISCIPLINA DO CURSO!")
@@ -181,15 +181,111 @@ def menu_adm(adm):
 
         # Gerência Turma
         elif (op == 12):
-            pass
+            cod_turma = str(input("\nCódigo da Turma: "))
+            if (sistema.buscar_turma(cod_turma)):
+                print("\nTURMA JÁ CADASTRADA! (CÓDIGO)")
+                continue
+            
+            cod_curso = str(input("Código do Curso: "))
+            curso = sistema.buscar_curso(cod_curso)
+            if (curso is None):
+                print("\nCURSO NÃO ENCONTRADO!")
+                continue
+
+            if (sistema.add_turma(cod_turma, curso)):
+                print("\nTURMA ADICIONADA COM SUCESSO!")
+                sistema.salvar_turma()
+                continue
+            print("\nERRO AO ADICIONAR TURMA!")
+
         elif (op == 13):
-            pass
+            cod_turma = str(input("\nCódigo da Turma: "))
+
+            turma = sistema.buscar_turma(cod_turma)
+            if (turma):
+                if (sistema.rem_turma(turma)):
+                    print("\nTURMA REMOVIDA COM SUCESSO!")
+                    sistema.salvar_turma()
+                    continue
+                print("\nERRO AO REMOVER A TURMA!")
+                continue
+            print("\nTURMA NÃO ENCONTRADA!")
+
         elif (op == 14):
-            pass
+            cpf_aluno = str(input("\nCPF do Aluno: "))
+            if (not sistema.iscpf(cpf_aluno)):
+                print("\nCPF INVÁLIDO!")
+                continue
+
+            from aluno import Aluno
+            aluno = sistema.buscar_usuario(cpf_aluno)
+            if (not isinstance(aluno, Aluno)):
+                print("\nALUNO NÃO ENCONTRADO!")
+                continue
+            
+            cod_turma = str(input("Código da Turma: "))
+            turma = sistema.buscar_turma(cod_turma)
+            if (turma is None):
+                print("\nTURMA NÃO ENCONTRADA!")
+                continue
+
+            alunointurma = False
+            for a in turma.alunos:
+                if (aluno.cpf == a.cpf):
+                    alunointurma = True
+                    break
+
+            if (alunointurma):
+                print("\nALUNO JÁ ESTÁ NA TURMA!")
+                continue
+
+            if (sistema.add_aluno_turma(aluno, turma)):
+                print("\nALUNO ADICIONADO À TURMA COM SUCESSO!")
+                sistema.salvar_turma()
+                continue
+            print("\nERRO AO ADICIONAR ALUNO À TURMA!")
+
         elif (op == 15):
-            pass
+            cpf_aluno = str(input("\nCPF do Aluno: "))
+            if (not sistema.iscpf(cpf_aluno)):
+                print("\nCPF INVÁLIDO!")
+                continue
+
+            from aluno import Aluno
+            aluno = sistema.buscar_usuario(cpf_aluno)
+            if (not isinstance(aluno, Aluno)):
+                print("\nALUNO NÃO ENCONTRADO!")
+                continue
+            
+            cod_turma = str(input("Código da Turma: "))
+            turma = sistema.buscar_turma(cod_turma)
+            if (turma is None):
+                print("\nTURMA NÃO ENCONTRADA!")
+                continue
+
+            alunointurma = None
+            for a in turma.alunos:
+                if (aluno.cpf == a.cpf):
+                    alunointurma = a
+                    break
+            
+            if (alunointurma is None):
+                print("\nALUNO NÃO ESTÁ NA TURMA!")
+                continue
+
+            if (sistema.rem_aluno_turma(alunointurma, turma)):
+                print("\nALUNO REMOVIDO DA TURMA COM SUCESSO!")
+                sistema.salvar_turma()
+                continue
+            print("\nERRO AO REMOVER O ALUNO DA TURMA!")
+
         elif (op == 16):
-            pass
+            cod_turma = str(input("\nCódigo da Turma: "))
+            turma = sistema.buscar_turma(cod_turma)
+            if (turma):
+                turma.exibir_info()
+                continue
+            print("\nTURMA NÃO ENCONTRADA!")
 
         # Voltar
         elif (op == 17):

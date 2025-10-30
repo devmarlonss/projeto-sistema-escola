@@ -49,13 +49,13 @@ class Sistema:
     
     def add_turma(self, codigo, curso):
         if (isinstance(curso, Curso)):
-            self.cursos.append(Curso(codigo, curso))
+            self.turmas.append(Turma(codigo, curso))
             return True
         return False
     
-    def rem_turma(self, curso):
-        if (isinstance(curso, Curso)):
-            self.cursos.remove(curso)
+    def rem_turma(self, turma):
+        if (isinstance(turma, Turma)):
+            self.turmas.remove(turma)
             return True
         return False
     
