@@ -12,20 +12,54 @@ def menu_adm(adm):
     while (True):
         sleep(1)
         print(f"\n== Menu - ADM ({adm.nome}) ==\n")
-        op = int(input("== Gerência Usuário ==\n1 - Adicionar Usuário\n2 - Remover Usuário\n3 - Exibir Usuário\n\n== Gerência Disciplina ==\n4 - Adicionar Disciplina\n5 - Remover Disciplina\n6 - Exibir Disciplina\n\n== Gerência Curso ==\n7 - Adicionar Curso\n8 - Remover Curso\n9 - Adicionar Disciplina ao Curso\n10 - Remover Disciplina do Curso\n11 - Exibir Curso\n\n== Gerência Turma ==\n12 - Adicionar Turma\n13 - Remover Turma\n14 - Adicionar Aluno à Turma\n15 - Remover Aluno da Turma\n16 - Exibir Turma\n17 - Sair\nO que deseja fazer? "))
+        op = int(input("== Gerência Usuário ==\n1 - Adicionar Usuário\n2 - Remover Usuário\n3 - Exibir Usuário\n\n== Gerência Disciplina ==\n4 - Adicionar Disciplina\n5 - Remover Disciplina\n6 - Exibir Disciplina\n\n== Gerência Curso ==\n7 - Adicionar Curso\n8 - Remover Curso\n9 - Adicionar Disciplina ao Curso\n10 - Remover Disciplina do Curso\n11 - Exibir Curso\n\n== Gerência Turma ==\n12 - Adicionar Turma\n13 - Remover Turma\n14 - Adicionar Aluno à Turma\n15 - Remover Aluno da Turma\n16 - Exibir Turma\n\n17 - Sair\n\nO que deseja fazer? "))
 
+        # Gerência Usuário
         if (op == 1):
-            pass
+            result_cadastro = cadastro()
+            if (result_cadastro == None):
+                continue
+            elif (result_cadastro):
+                print("\nUSUÁRIO CADASTRADO COM SUCESSO!")
+                sistema.salvar_usuario()
+            else:
+                print("\nERRO AO CADASTRAR USUÁRIO")
         elif (op == 2):
-            pass
+            cpf_usuario = str(input("\nCPF do Usuário: "))
+            if (not sistema.iscpf(cpf_usuario)):
+                print("\nCPF INVÁLIDO")
+                continue
+
+            usuario = sistema.buscar_usuario(cpf_usuario)
+            if (usuario):
+                if (sistema.rem_usuario(usuario)):
+                    print("\nUSUÁRIO REMOVIDO COM SUCESSO!")
+                    sistema.salvar_usuario()
+                    continue
+                print("\nERRO AO REMOVER O USUÁRIO!")
+                continue
+            print("\nUSUÁRIO NÃO ENCONTRADO!")
         elif (op == 3):
-            pass
+            cpf_usuario = str(input("\nCPF do Usuário: "))
+            if (not sistema.iscpf(cpf_usuario)):
+                print("\nCPF INVÁLIDO")
+                continue
+
+            usuario = sistema.buscar_usuario(cpf_usuario)
+            if (usuario):
+                usuario.exibir_info()
+                continue
+            print("\nUSUÁRIO NÃO ENCONTRADO!")
+
+        # Gerência Disciplina
         elif (op == 4):
             pass
         elif (op == 5):
             pass
         elif (op == 6):
             pass
+
+        # Gerência Curso
         elif (op == 7):
             pass
         elif (op == 8):
@@ -36,6 +70,8 @@ def menu_adm(adm):
             pass
         elif (op == 11):
             pass
+
+        # Gerência Turma
         elif (op == 12):
             pass
         elif (op == 13):
@@ -46,6 +82,8 @@ def menu_adm(adm):
             pass
         elif (op == 16):
             pass
+
+        # Voltar
         elif (op == 17):
             return None
         else:
