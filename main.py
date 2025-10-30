@@ -24,6 +24,7 @@ def menu_adm(adm):
                 sistema.salvar_usuario()
             else:
                 print("\nERRO AO CADASTRAR USUÁRIO")
+
         elif (op == 2):
             cpf_usuario = str(input("\nCPF do Usuário: "))
             if (not sistema.iscpf(cpf_usuario)):
@@ -39,6 +40,7 @@ def menu_adm(adm):
                 print("\nERRO AO REMOVER O USUÁRIO!")
                 continue
             print("\nUSUÁRIO NÃO ENCONTRADO!")
+
         elif (op == 3):
             cpf_usuario = str(input("\nCPF do Usuário: "))
             if (not sistema.iscpf(cpf_usuario)):
@@ -53,11 +55,40 @@ def menu_adm(adm):
 
         # Gerência Disciplina
         elif (op == 4):
-            pass
+            nome = str(input("\nNome: "))
+            cod_disc = str(input("Código da Disciplina: "))
+            if (sistema.buscar_disc(cod_disc)):
+                print("\nDISCIPLINA JÁ CADASTRADA! (CÓDIGO)")
+                continue
+
+            carga_horaria = int(input("Carga Horária: "))
+            if (sistema.add_disciplina(nome, cod_disc, carga_horaria)):
+                print("\nDISCIPLINA ADICIONADA COM SUCESSO!")
+                sistema.salvar_disc()
+                continue
+            print("\nERRO AO ADICIONAR DISCIPLINA!")
+            
         elif (op == 5):
-            pass
+            cod_disc = str(input("Código da Disciplina: "))
+
+            disc = sistema.buscar_disc(cod_disc)
+            if (disc):
+                if (sistema.rem_disciplina(disc)):
+                    print("\nDISCIPLINA REMOVIDA COM SUCESSO!")
+                    sistema.salvar_disc()
+                    continue
+                print("\nERRO AO REMOVER DISCIPLINA")
+                continue
+            print("\nDISCIPLINA NÃO ENCONTRADA!")
+        
         elif (op == 6):
-            pass
+            cod_disc = str(input("Código da Disciplina: "))
+
+            disc = sistema.buscar_disc(cod_disc)
+            if (disc):
+                disc.exibir_info()
+                continue
+            print("\nDISCIPLINA NÃO ENCONTRADA!")
 
         # Gerência Curso
         elif (op == 7):
