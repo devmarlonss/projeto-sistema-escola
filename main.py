@@ -69,7 +69,7 @@ def menu_adm(adm):
             print("\nERRO AO ADICIONAR DISCIPLINA!")
             
         elif (op == 5):
-            cod_disc = str(input("Código da Disciplina: "))
+            cod_disc = str(input("\nCódigo da Disciplina: "))
 
             disc = sistema.buscar_disc(cod_disc)
             if (disc):
@@ -77,12 +77,12 @@ def menu_adm(adm):
                     print("\nDISCIPLINA REMOVIDA COM SUCESSO!")
                     sistema.salvar_disc()
                     continue
-                print("\nERRO AO REMOVER DISCIPLINA")
+                print("\nERRO AO REMOVER DISCIPLINA!")
                 continue
             print("\nDISCIPLINA NÃO ENCONTRADA!")
         
         elif (op == 6):
-            cod_disc = str(input("Código da Disciplina: "))
+            cod_disc = str(input("\nCódigo da Disciplina: "))
 
             disc = sistema.buscar_disc(cod_disc)
             if (disc):
@@ -92,15 +92,92 @@ def menu_adm(adm):
 
         # Gerência Curso
         elif (op == 7):
-            pass
+            nome = str(input("\nNome: "))
+            cod_curso = str(input("Código do Curso: "))
+            if (sistema.buscar_curso(cod_curso)):
+                print("\nCURSO JÁ CADASTRADO! (CÓDIGO)")
+                continue
+
+            if (sistema.add_curso(nome, cod_curso)):
+                print("\nCURSO ADICIONADO COM SUCESSO!")
+                sistema.salvar_curso()
+                continue
+            print("\nERRO AO ADICIONAR CURSO!")
+
         elif (op == 8):
-            pass
+            cod_curso = str(input("\nCódigo do Curso: "))
+
+            curso = sistema.buscar_curso(cod_curso)
+            if (curso):
+                if (sistema.rem_curso(curso)):
+                    print("\nCURSO REMOVIDO COM SUCESSO!")
+                    sistema.salvar_curso()
+                    continue
+                print("\nERRO AO REMOVER CURSO!")
+                continue
+            print("\nCURSO NÃO ENCONTRADO!")
+
         elif (op == 9):
-            pass
+            cod_disc = str(input("\nCódigo da Disciplina: "))
+            disc = sistema.buscar_disc(cod_disc)
+            if (disc is None):
+                print("\nDISCIPLINA NÃO ENCONTRADA!")
+                continue
+            
+            cod_curso = str(input("Código do Curso: "))
+            curso = sistema.buscar_curso(cod_curso)
+            if (curso is None):
+                print("\nCURSO NÃO ENCONTRADO!")
+                continue
+            
+            discincurso = False
+            for d in curso.disciplinas:
+                if (disc.codigo in d.codigo):
+                    print("\nDISCIPLINA JÁ ESTÁ NO CURSO!")
+                    discincurso = True
+                    break
+
+            if (discincurso):
+                continue
+
+            if (sistema.add_disc_curso(disc, curso)):
+                print("\nDISCIPLINA FOI ADICIONADA AO CURSO COM SUCESSO!")
+                sistema.salvar_curso()
+                continue
+            print("\nERRO AO ADICIONAR DISCIPLINA AO CURSO!")
+
         elif (op == 10):
-            pass
+            cod_disc = str(input("\nCódigo da Disciplina: "))
+            
+            cod_curso = str(input("Código do Curso: "))
+            curso = sistema.buscar_curso(cod_curso)
+            if (curso is None):
+                print("\nCURSO NÃO ENCONTRADO!")
+                continue
+            
+            disc = None
+            for d in curso.disciplinas:
+                if (cod_disc == d.codigo):
+                    disc = d
+                    break
+
+            if (disc is None):
+                print("\nDISCIPLINA NÃO ESTÁ NO CURSO!")
+                continue
+
+            if (sistema.rem_disc_curso(disc, curso)):
+                print("\nDISCIPLINA FOI REMOVIDA DO CURSO COM SUCESSO!")
+                sistema.salvar_curso()
+                continue
+            print("\nERRO AO REMOVER DISCIPLINA DO CURSO!")
+
         elif (op == 11):
-            pass
+            cod_curso = str(input("\nCódigo do Curso: "))
+            curso = sistema.buscar_curso(cod_curso)
+            if (curso):
+                curso.exibir_info()
+                continue
+            print("\nCURSO NÃO ENCONTRADO!")
 
         # Gerência Turma
         elif (op == 12):

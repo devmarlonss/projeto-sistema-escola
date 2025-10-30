@@ -62,16 +62,18 @@ class Sistema:
     def add_aluno_turma(self, aluno, turma):
         if (isinstance(aluno, Aluno)):
             if (isinstance(turma, Turma)):
-                turma.adicionar_aluno(aluno)
-                return True
+                if (turma.adicionar_aluno(aluno)):
+                    return True
+                return False
             return False
         return False
     
     def rem_aluno_turma(self, aluno, turma):
         if (isinstance(aluno, Aluno)):
             if (isinstance(turma, Turma)):
-                turma.remover_aluno(aluno)
-                return True
+                if (turma.remover_aluno(aluno)):
+                    return True
+                return False
             return False
         return False
     
@@ -102,16 +104,18 @@ class Sistema:
     def add_disc_curso(self, disc, curso):
         if (isinstance(disc, Disciplina)):
             if (isinstance(curso, Curso)):
-                curso.adicionar_disc(disc)
-                return True
+                if (curso.adicionar_disc(disc)):
+                    return True
+                return False
             return False
         return False
     
     def rem_disc_curso(self, disc, curso):
         if (isinstance(disc, Disciplina)):
             if (isinstance(curso, Curso)):
-                curso.remover_disc(disc)
-                return True
+                if (curso.remover_disc(disc)):
+                    return True
+                return False
             return False
         return False
     
