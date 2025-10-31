@@ -19,10 +19,12 @@ class Aluno(Usuario):
         return self.__boletim
     
     def exibir_info(self):
+        """Exibe as informações do aluno."""
         super().exibir_info()
         print(f"Curso: {self.curso.nome}")
 
     def ver_boletim(self):
+        """Exibe o boletim do aluno."""
         if (self.boletim):
             for k, v in self.boletim.items():
                 print(f"\nDisciplina: {k}")
@@ -31,6 +33,7 @@ class Aluno(Usuario):
             print("Não há notas cadastradas!")
 
     def adicionar_nota(self, disciplina, nota):
+        """Adiciona a nota no boletim do aluno."""
         try:
             if (disciplina in self.boletim):
                 self.boletim[disciplina].append(nota)
@@ -41,6 +44,7 @@ class Aluno(Usuario):
             return False
     
     def aluno_dict(self):
+        """Retorna o objeto da classe Aluno em formato de dicionário."""
         dados = super().usuario_dict()
         dados["tipo"] = "Aluno"
         dados["curso"] = Curso.curso_dict(self.curso)
@@ -49,6 +53,7 @@ class Aluno(Usuario):
     
     @staticmethod
     def dict_aluno(aluno):
+        """Cria uma instância da classe Aluno a partir de um dicionário"""
         curso = Curso.dict_curso(aluno["curso"])
         return Aluno(aluno["nome"], aluno["cpf"], aluno["email"], aluno["senha"], curso, aluno["boletim"])
 
