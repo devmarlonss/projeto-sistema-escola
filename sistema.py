@@ -91,6 +91,7 @@ class Sistema:
 
 
     # Seção Gerência de Cursos
+    """Busca um curso pelo código."""
     def buscar_curso(self, codigo):
         for c in self.cursos:
             if (c.codigo == codigo):
@@ -98,16 +99,19 @@ class Sistema:
         return None
     
     def add_curso(self, nome, codigo):
+        """Adiciona um curso à lista de cursos do sistema."""
         self.cursos.append(Curso(nome, codigo))
         return True
     
     def rem_curso(self, curso):
+        """Remove um curso da lista de cursos do sistema."""
         if (isinstance(curso, Curso)):
             self.cursos.remove(curso)
             return True
         return False
     
     def add_disc_curso(self, disc, curso):
+        """Adiciona uma disciplina ao curso."""
         if (isinstance(disc, Disciplina)):
             if (isinstance(curso, Curso)):
                 if (curso.adicionar_disc(disc)):
@@ -117,6 +121,7 @@ class Sistema:
         return False
     
     def rem_disc_curso(self, disc, curso):
+        """Remove uma disciplina do curso."""
         if (isinstance(disc, Disciplina)):
             if (isinstance(curso, Curso)):
                 if (curso.remover_disc(disc)):
@@ -126,6 +131,7 @@ class Sistema:
         return False
     
     def exibir_info_curso(self, curso):
+        """Exibe as informações do curso."""
         if (isinstance(curso, Curso)):
             curso.exibir_info()
             return True
