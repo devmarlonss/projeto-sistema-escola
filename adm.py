@@ -13,5 +13,5 @@ class Adm(Usuario):
     
     @staticmethod
     def dict_adm(adm):
-        """Cria uma instância da classe Adm a partir de um dicionário"""
+        """Cria uma instância da classe Adm a partir de um dicionário."""
         return Adm(adm["nome"], adm["cpf"], adm["email"], adm["senha"])

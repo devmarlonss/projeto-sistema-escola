@@ -32,7 +32,7 @@ class Professor(Usuario):
     
     @staticmethod
     def dict_prof(prof):
-        """Cria uma instância da classe Professor a partir de um dicionário"""
+        """Cria uma instância da classe Professor a partir de um dicionário."""
         disc = Disciplina.dict_disc(prof["disciplina"])
         return Professor(prof["nome"], prof["cpf"], prof["email"], prof["senha"], disc, prof["salario"])
     

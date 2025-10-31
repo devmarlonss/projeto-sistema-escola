@@ -53,7 +53,7 @@ class Aluno(Usuario):
     
     @staticmethod
     def dict_aluno(aluno):
-        """Cria uma instância da classe Aluno a partir de um dicionário"""
+        """Cria uma instância da classe Aluno a partir de um dicionário."""
         curso = Curso.dict_curso(aluno["curso"])
         return Aluno(aluno["nome"], aluno["cpf"], aluno["email"], aluno["senha"], curso, aluno["boletim"])
 
