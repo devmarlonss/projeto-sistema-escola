@@ -42,24 +42,28 @@ class Sistema:
     
     # Seção Gerência de Turmas
     def buscar_turma(self, codigo):
+        """Buscar uma turma pelo código."""
         for t in self.turmas:
             if (t.codigo == codigo):
                 return t            
         return None
     
     def add_turma(self, codigo, curso):
+        """Adiciona uma turma à lista de turmas do sistema."""
         if (isinstance(curso, Curso)):
             self.turmas.append(Turma(codigo, curso))
             return True
         return False
     
     def rem_turma(self, turma):
+        """Remove uma turma da lista de turmas do sistema."""
         if (isinstance(turma, Turma)):
             self.turmas.remove(turma)
             return True
         return False
     
     def add_aluno_turma(self, aluno, turma):
+        """Adiciona um aluno à turma."""
         if (isinstance(aluno, Aluno)):
             if (isinstance(turma, Turma)):
                 if (turma.adicionar_aluno(aluno)):
@@ -69,6 +73,7 @@ class Sistema:
         return False
     
     def rem_aluno_turma(self, aluno, turma):
+        """Remove um aluno da turma."""
         if (isinstance(aluno, Aluno)):
             if (isinstance(turma, Turma)):
                 if (turma.remover_aluno(aluno)):
@@ -78,6 +83,7 @@ class Sistema:
         return False
     
     def exibir_info_turma(self, turma):
+        """Exibe as informações da turma."""
         if (isinstance(turma, Turma)):
             turma.exibir_info()
             return True
