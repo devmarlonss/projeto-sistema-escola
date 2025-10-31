@@ -9,6 +9,7 @@ sistema.carregar_turma()
 sistema.carregar_usuario()
 
 def menu_adm(adm):
+    """Exibe o menu de usuários administradores."""
     while (True):
         sleep(1)
         print(f"\n== MENU - ADM ({adm.nome}) ==\n")
@@ -294,6 +295,7 @@ def menu_adm(adm):
             print("\nOPÇÃO INVÁLIDA!")
 
 def menu_prof(prof):
+    """Exibe o menu de usuários professores."""
     while (True):
         sleep(1)
         print(f"\n== MENU - PROFESSOR ({prof.nome}) ==\n")
@@ -337,6 +339,7 @@ def menu_prof(prof):
             print("\nOPÇÃO INVÁLIDA!")
 
 def menu_aluno(aluno):
+    """Exibe o menu de usuários alunos."""
     while (True):
         sleep(1)
         print(f"\n== MENU - ALUNO ({aluno.nome}) ==\n")
@@ -367,6 +370,7 @@ def menu_aluno(aluno):
 
 
 def login():
+    """Exibe o menu de login de usuários."""
     while (True):
         sleep(1)
         print("\n== FAZER LOGIN ==\n")
@@ -396,6 +400,7 @@ def login():
 
 
 def cadastro():
+    """Exibe o menu de cadastro de usuários."""
     while (True):
         sleep(1)
         print("\n== CADASTRAR-SE ==\n")
@@ -452,6 +457,7 @@ def cadastro():
             return sistema.add_usuario("Adm", nome, cpf, email, senha)        
 
 def main():
+    """Exibe o menu principal do sistema."""
     isloggedin = False
     while (True):
         to_login = False
@@ -506,3 +512,8 @@ def main():
             print("\nERRO AO CARREGAR INTERFACE!")
 
 main()
+
+sistema.salvar_disc()
+sistema.salvar_curso()
+sistema.salvar_turma()
+sistema.salvar_usuario()
