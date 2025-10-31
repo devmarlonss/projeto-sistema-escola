@@ -168,6 +168,7 @@ class Sistema:
     
     # Seção Gerência de Usuários
     def buscar_usuario(self, cpf):
+        """Busca um usuário pelo CPF."""
         for u in self.alunos:
             if (u.cpf == cpf):
                 return u
@@ -180,6 +181,7 @@ class Sistema:
         return None
 
     def add_usuario(self, tipo, nome, cpf, email, senha, curso = None, disciplina = None, salario = None):
+        """Adiciona um usuário (Aluno, Professor, Adm) à lista (alunos, professores, adms) do sistema"""
         if (tipo == "Aluno"):
             if (isinstance(curso, Curso)):
                 self.alunos.append(Aluno(nome, cpf, email, senha, curso))
@@ -196,6 +198,7 @@ class Sistema:
         return False
     
     def rem_usuario(self, usuario):
+        """Remove um usuário (Aluno, Professor, Adm) da lista (alunos, professores, adms) do sistema."""
         if (usuario):
             if (isinstance(usuario, Aluno)):
                 self.alunos.remove(usuario)
@@ -210,12 +213,14 @@ class Sistema:
         return False
     
     def exibir_info_usu(self, usuario):
+        """Exibe as informações do usuário."""
         if (usuario):
             usuario.exibir_info()
             return True
         return False
     
     def lancar_nota(self, professor, aluno, nota):
+        """Lança a nota do aluno."""
         if (isinstance(professor, Professor)):
             if (isinstance(aluno, Aluno)):
                 if (aluno.adicionar_nota(professor.disciplina.nome, nota)):
@@ -225,6 +230,7 @@ class Sistema:
         return False
     
     def ver_boletim_aluno(self, aluno):
+        """Ver o  boletim do aluno."""
         if (isinstance(aluno, Aluno)):
             aluno.ver_boletim()
             return True
