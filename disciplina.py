@@ -19,9 +19,11 @@ class Disciplina:
         return self.__carga_horaria
 
     def exibir_info(self):
+        """Exibe as informações da disciplina."""
         print(f"\nNome: {self.nome}\nCódigo: {self.codigo}\nCarga Horária: {self.carga_horaria} horas")
 
     def disc_dict(self):
+        """Retorna o objeto da classe Disciplina em formato de dicionário."""
         return {
             "nome": self.nome,
             "codigo": self.codigo,
@@ -30,6 +32,7 @@ class Disciplina:
     
     @staticmethod
     def dict_disc(disc):
+        """Cria uma instância da classe Disciplina a partir de um dicionário."""
         return Disciplina(disc["nome"], disc["codigo"], disc["carga_horaria"])
 
 if __name__ == "__main__":

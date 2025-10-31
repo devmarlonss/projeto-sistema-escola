@@ -23,6 +23,7 @@ class Turma:
         return self.__alunos        
     
     def exibir_info(self):
+        """Exibe as informações da turma."""
         print(f"\nCódigo: {self.codigo}\nCurso: {self.curso.nome}\nAlunos: ")
         if (self.alunos):
             for a in self.alunos:
@@ -31,18 +32,21 @@ class Turma:
             print("Não há alunos cadastrados!")
 
     def adicionar_aluno(self, aluno):
+        """Adiciona um aluno à lista de alunos da turma."""
         if (isinstance(aluno, Aluno) and aluno not in self.alunos):
             self.alunos.append(aluno)
             return True
         return False
 
     def remover_aluno(self, aluno):
+        """Remove um aluno da lista de alunos da turma."""
         if (aluno in self.alunos):
             self.alunos.remove(aluno)
             return True
         return False
 
     def turma_dict(self):
+        """Retorna o objeto da classe Turma em formato de dicionário."""
         alunos_dict = []
         for a in self.alunos:
             alunos_dict.append(Aluno.aluno_dict(a))
@@ -54,6 +58,7 @@ class Turma:
     
     @staticmethod
     def dict_turma(turma):
+        """Cria uma instância da classe Turma a partir de um dicionário."""
         curso = Curso.dict_curso(turma["curso"])
         alunos = []
         for a in turma["alunos"]:

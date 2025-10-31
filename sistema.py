@@ -42,24 +42,28 @@ class Sistema:
     
     # Seção Gerência de Turmas
     def buscar_turma(self, codigo):
+        """Buscar uma turma pelo código."""
         for t in self.turmas:
             if (t.codigo == codigo):
                 return t            
         return None
     
     def add_turma(self, codigo, curso):
+        """Adiciona uma turma à lista de turmas do sistema."""
         if (isinstance(curso, Curso)):
             self.turmas.append(Turma(codigo, curso))
             return True
         return False
     
     def rem_turma(self, turma):
+        """Remove uma turma da lista de turmas do sistema."""
         if (isinstance(turma, Turma)):
             self.turmas.remove(turma)
             return True
         return False
     
     def add_aluno_turma(self, aluno, turma):
+        """Adiciona um aluno à turma."""
         if (isinstance(aluno, Aluno)):
             if (isinstance(turma, Turma)):
                 if (turma.adicionar_aluno(aluno)):
@@ -69,6 +73,7 @@ class Sistema:
         return False
     
     def rem_aluno_turma(self, aluno, turma):
+        """Remove um aluno da turma."""
         if (isinstance(aluno, Aluno)):
             if (isinstance(turma, Turma)):
                 if (turma.remover_aluno(aluno)):
@@ -78,6 +83,7 @@ class Sistema:
         return False
     
     def exibir_info_turma(self, turma):
+        """Exibe as informações da turma."""
         if (isinstance(turma, Turma)):
             turma.exibir_info()
             return True
@@ -85,6 +91,7 @@ class Sistema:
 
 
     # Seção Gerência de Cursos
+    """Busca um curso pelo código."""
     def buscar_curso(self, codigo):
         for c in self.cursos:
             if (c.codigo == codigo):
@@ -92,16 +99,19 @@ class Sistema:
         return None
     
     def add_curso(self, nome, codigo):
+        """Adiciona um curso à lista de cursos do sistema."""
         self.cursos.append(Curso(nome, codigo))
         return True
     
     def rem_curso(self, curso):
+        """Remove um curso da lista de cursos do sistema."""
         if (isinstance(curso, Curso)):
             self.cursos.remove(curso)
             return True
         return False
     
     def add_disc_curso(self, disc, curso):
+        """Adiciona uma disciplina ao curso."""
         if (isinstance(disc, Disciplina)):
             if (isinstance(curso, Curso)):
                 if (curso.adicionar_disc(disc)):
@@ -111,6 +121,7 @@ class Sistema:
         return False
     
     def rem_disc_curso(self, disc, curso):
+        """Remove uma disciplina do curso."""
         if (isinstance(disc, Disciplina)):
             if (isinstance(curso, Curso)):
                 if (curso.remover_disc(disc)):
@@ -120,6 +131,7 @@ class Sistema:
         return False
     
     def exibir_info_curso(self, curso):
+        """Exibe as informações do curso."""
         if (isinstance(curso, Curso)):
             curso.exibir_info()
             return True
@@ -128,22 +140,26 @@ class Sistema:
     
     # Seção Gerência de Disciplinas
     def buscar_disc(self, codigo):
+        """Busca uma disciplina pelo código."""
         for d in self.disciplinas:
             if (d.codigo == codigo):
                 return d
         return None
     
     def add_disciplina(self, nome, codigo, carga_horaria):
+        """Adiciona uma disciplina à lista de disciplinas do sistema."""
         self.disciplinas.append(Disciplina(nome, codigo, carga_horaria))
         return True
     
     def rem_disciplina(self, disc):
+        """Remove uma disciplina da lista de disciplinas do sistema."""
         if (isinstance(disc, Disciplina)):
             self.disciplinas.remove(disc)
             return True
         return False
     
     def exibir_info_disc(self, disc):
+        """Exibe as informações da disciplina."""
         if (isinstance(disc, Disciplina)):
             disc.exibir_info()
             return True
@@ -152,6 +168,7 @@ class Sistema:
     
     # Seção Gerência de Usuários
     def buscar_usuario(self, cpf):
+        """Busca um usuário pelo CPF."""
         for u in self.alunos:
             if (u.cpf == cpf):
                 return u
@@ -164,6 +181,7 @@ class Sistema:
         return None
 
     def add_usuario(self, tipo, nome, cpf, email, senha, curso = None, disciplina = None, salario = None):
+        """Adiciona um usuário (Aluno, Professor, Adm) à lista (alunos, professores, adms) do sistema"""
         if (tipo == "Aluno"):
             if (isinstance(curso, Curso)):
                 self.alunos.append(Aluno(nome, cpf, email, senha, curso))
@@ -180,6 +198,7 @@ class Sistema:
         return False
     
     def rem_usuario(self, usuario):
+        """Remove um usuário (Aluno, Professor, Adm) da lista (alunos, professores, adms) do sistema."""
         if (usuario):
             if (isinstance(usuario, Aluno)):
                 self.alunos.remove(usuario)
@@ -194,12 +213,14 @@ class Sistema:
         return False
     
     def exibir_info_usu(self, usuario):
+        """Exibe as informações do usuário."""
         if (usuario):
             usuario.exibir_info()
             return True
         return False
     
     def lancar_nota(self, professor, aluno, nota):
+        """Lança a nota do aluno."""
         if (isinstance(professor, Professor)):
             if (isinstance(aluno, Aluno)):
                 if (aluno.adicionar_nota(professor.disciplina.nome, nota)):
@@ -209,6 +230,7 @@ class Sistema:
         return False
     
     def ver_boletim_aluno(self, aluno):
+        """Ver o  boletim do aluno."""
         if (isinstance(aluno, Aluno)):
             aluno.ver_boletim()
             return True
@@ -216,6 +238,7 @@ class Sistema:
 
     # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):
+        """Carrega os dados das disciplinas do arquivo e adiciona na lista de disciplinas do sistema."""
         disciplinas = carregar_dados("disciplinas.json")
         self.__disciplinas = []
         for d in disciplinas:
@@ -223,6 +246,7 @@ class Sistema:
         return self.disciplinas
     
     def salvar_disc(self):
+        """Salva os dados das disciplinas da lista do sistema no arquivo."""
         dados = []
         for d in self.disciplinas:
             dados.append(Disciplina.disc_dict(d))
@@ -230,6 +254,7 @@ class Sistema:
     
     # Seção Carregar/Salvar - Cursos
     def carregar_curso(self):
+        """Carrega os dados dos cursos do arquivo e adiciona na lista de cursos do sistema."""
         cursos = carregar_dados("cursos.json")
         self.__cursos = []
         for c in cursos:
@@ -237,6 +262,7 @@ class Sistema:
         return self.cursos
     
     def salvar_curso(self):
+        """Salva os dados dos cursos da lista do sistema no arquivo."""
         dados = []
         for c in self.cursos:
             dados.append(Curso.curso_dict(c))
@@ -244,6 +270,7 @@ class Sistema:
 
     # Seção Carregar/Salvar - Turmas
     def carregar_turma(self):
+        """Carrega os dados das turmas do arquivo e adiciona na lista de turmas do sistema."""
         turmas = carregar_dados("turmas.json")
         self.__turmas = []
         for t in turmas:
@@ -251,6 +278,7 @@ class Sistema:
         return self.turmas
 
     def salvar_turma(self):
+        """Salva os dados das turmas da lista do sistema no arquivo."""
         dados = []
         for t in self.turmas:
             dados.append(Turma.turma_dict(t))
@@ -258,6 +286,7 @@ class Sistema:
 
     # Seção Carregar/Salvar - Usuários
     def carregar_usuario(self):
+        """Carrega os dados dos usuários (Aluno, Professor, Adm) do arquivo e adiciona na lista (alunos, professores, adms) do sistema."""
         usuarios = carregar_dados("usuarios.json")
         for u in usuarios:
             usu = Usuario.dict_usuario(u)
@@ -270,6 +299,7 @@ class Sistema:
         return (self.alunos, self.professores, self.adms)
 
     def salvar_usuario(self):
+        """Salva os dados dos usuários (Aluno, Professor, Adm) da lista (alunos, professores, adms) do sistema no arquivo."""
         dados = []
         for aluno in self.alunos:
             dados.append(Aluno.aluno_dict(aluno))
@@ -281,10 +311,12 @@ class Sistema:
 
     @staticmethod
     def iscpf(cpf):
+        """Valida o formato e dígitos de um CPF."""
         return (cpf.isdigit() and len(cpf) == 11)
     
     @staticmethod
     def verificar_senha(usuario, senha):
+        """Verifica se a senha informada é igual a senha do usuário."""
         return (usuario.senha == senha)
 
 if __name__ == "__main__":

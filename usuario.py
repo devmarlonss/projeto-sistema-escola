@@ -24,9 +24,11 @@ class Usuario:
         return self.__senha
     
     def exibir_info(self):
+        """Exibe as informações do usuário."""
         print(f"\nNome: {self.nome}\nCPF: {self.cpf}\nEmail: {self.email}\nSenha: {self.senha}")
 
     def usuario_dict(self):
+        """Retorna o objeto da classe Usuario em formato de dicionário."""
         return {
             "tipo": "Usuario",
             "nome": self.nome,
@@ -37,6 +39,7 @@ class Usuario:
     
     @staticmethod
     def dict_usuario(usuario):
+        """Cria uma instância da classe Aluno, Professor ou Adm a partir de um dicionário."""
         tipo = usuario["tipo"]
 
         if (tipo == "Aluno"):
