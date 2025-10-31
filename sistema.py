@@ -238,6 +238,7 @@ class Sistema:
 
     # Seção Carregar/Salvar - Disciplinas
     def carregar_disc(self):
+        """Carrega os dados das disciplinas do arquivo e adiciona na lista de disciplinas do sistema."""
         disciplinas = carregar_dados("disciplinas.json")
         self.__disciplinas = []
         for d in disciplinas:
@@ -245,6 +246,7 @@ class Sistema:
         return self.disciplinas
     
     def salvar_disc(self):
+        """Salva os dados das disciplinas da lista do sistema no arquivo."""
         dados = []
         for d in self.disciplinas:
             dados.append(Disciplina.disc_dict(d))
@@ -252,6 +254,7 @@ class Sistema:
     
     # Seção Carregar/Salvar - Cursos
     def carregar_curso(self):
+        """Carrega os dados dos cursos do arquivo e adiciona na lista de cursos do sistema."""
         cursos = carregar_dados("cursos.json")
         self.__cursos = []
         for c in cursos:
@@ -259,6 +262,7 @@ class Sistema:
         return self.cursos
     
     def salvar_curso(self):
+        """Salva os dados dos cursos da lista do sistema no arquivo."""
         dados = []
         for c in self.cursos:
             dados.append(Curso.curso_dict(c))
@@ -266,6 +270,7 @@ class Sistema:
 
     # Seção Carregar/Salvar - Turmas
     def carregar_turma(self):
+        """Carrega os dados das turmas do arquivo e adiciona na lista de turmas do sistema."""
         turmas = carregar_dados("turmas.json")
         self.__turmas = []
         for t in turmas:
@@ -273,6 +278,7 @@ class Sistema:
         return self.turmas
 
     def salvar_turma(self):
+        """Salva os dados das turmas da lista do sistema no arquivo."""
         dados = []
         for t in self.turmas:
             dados.append(Turma.turma_dict(t))
@@ -280,6 +286,7 @@ class Sistema:
 
     # Seção Carregar/Salvar - Usuários
     def carregar_usuario(self):
+        """Carrega os dados dos usuários (Aluno, Professor, Adm) do arquivo e adiciona na lista (alunos, professores, adms) do sistema."""
         usuarios = carregar_dados("usuarios.json")
         for u in usuarios:
             usu = Usuario.dict_usuario(u)
@@ -292,6 +299,7 @@ class Sistema:
         return (self.alunos, self.professores, self.adms)
 
     def salvar_usuario(self):
+        """Salva os dados dos usuários (Aluno, Professor, Adm) da lista (alunos, professores, adms) do sistema no arquivo."""
         dados = []
         for aluno in self.alunos:
             dados.append(Aluno.aluno_dict(aluno))
@@ -303,10 +311,12 @@ class Sistema:
 
     @staticmethod
     def iscpf(cpf):
+        """Valida o formato e dígitos de um CPF."""
         return (cpf.isdigit() and len(cpf) == 11)
     
     @staticmethod
     def verificar_senha(usuario, senha):
+        """Verifica se a senha informada é igual a senha do usuário."""
         return (usuario.senha == senha)
 
 if __name__ == "__main__":
