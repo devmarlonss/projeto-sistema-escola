@@ -22,6 +22,7 @@ class Curso:
         return self.__disciplinas
     
     def exibir_info(self):
+        """Exibe as informações do curso."""
         print(f"\nNome: {self.nome}\nCódigo: {self.codigo}\nDisciplinas: ")
         if (self.disciplinas):
             for d in self.disciplinas:
@@ -30,18 +31,21 @@ class Curso:
             print("Não há disciplinas cadastradas!")
 
     def adicionar_disc(self, disc):
+        """Adiciona uma disciplina à lista de disciplinas do curso."""
         if (isinstance(disc, Disciplina) and disc not in self.disciplinas):
             self.disciplinas.append(disc)
             return True
         return False
 
     def remover_disc(self, disc):
+        """Remove uma disciplina da lista de disciplinas do curso."""
         if (disc in self.disciplinas):
             self.disciplinas.remove(disc)
             return True
         return False
 
     def curso_dict(self):
+        """Retorna o objeto da classe Curso em formato de dicionário."""
         disc_dict = []
         for d in self.disciplinas:
             disc_dict.append(Disciplina.disc_dict(d))
@@ -54,6 +58,7 @@ class Curso:
     
     @staticmethod
     def dict_curso(curso):
+        """Cria uma instância da classe Curso a partir de um dicionário."""
         disc = []
         for d in curso["disciplinas"]:
             disc.append(Disciplina.dict_disc(d))
