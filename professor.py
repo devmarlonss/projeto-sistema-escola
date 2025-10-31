@@ -18,10 +18,12 @@ class Professor(Usuario):
         return self.__salario
     
     def exibir_info(self):
+        """Exibe as informações do professor."""
         super().exibir_info()
         print(f"Disciplina: {self.disciplina.nome}\nSalário: R$ {self.salario:.2f}")
     
     def prof_dict(self):
+        """Retorna o objeto da classe Professor em formato de dicionário."""
         dados = super().usuario_dict()
         dados["tipo"] = "Professor"
         dados["disciplina"] = Disciplina.disc_dict(self.disciplina)
@@ -30,6 +32,7 @@ class Professor(Usuario):
     
     @staticmethod
     def dict_prof(prof):
+        """Cria uma instância da classe Professor a partir de um dicionário"""
         disc = Disciplina.dict_disc(prof["disciplina"])
         return Professor(prof["nome"], prof["cpf"], prof["email"], prof["senha"], disc, prof["salario"])
     
