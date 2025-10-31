@@ -140,22 +140,26 @@ class Sistema:
     
     # Seção Gerência de Disciplinas
     def buscar_disc(self, codigo):
+        """Busca uma disciplina pelo código."""
         for d in self.disciplinas:
             if (d.codigo == codigo):
                 return d
         return None
     
     def add_disciplina(self, nome, codigo, carga_horaria):
+        """Adiciona uma disciplina à lista de disciplinas do sistema."""
         self.disciplinas.append(Disciplina(nome, codigo, carga_horaria))
         return True
     
     def rem_disciplina(self, disc):
+        """Remove uma disciplina da lista de disciplinas do sistema."""
         if (isinstance(disc, Disciplina)):
             self.disciplinas.remove(disc)
             return True
         return False
     
     def exibir_info_disc(self, disc):
+        """Exibe as informações da disciplina."""
         if (isinstance(disc, Disciplina)):
             disc.exibir_info()
             return True
